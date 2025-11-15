@@ -1,0 +1,38 @@
+{
+	"name": "adriano/movie-star",
+	"description": "A social network where you can rate movies and see other users' ratings.",
+	"type": "project",
+	"license": "MIT",
+	"autoload": {
+		"psr-4": {
+			"MovieStar\\": "src/"
+		},
+		"files": [
+			"helpers/env.php",
+			"helpers/path.php",
+			"helpers/url.php",
+			"helpers/routes.php"
+		]
+	},
+	"authors": [
+		{
+			"name": "Adriano Miranda",
+			"email": "adrjmiranda@gmail.com"
+		}
+	],
+	"minimum-stability": "stable",
+	"require": {
+		"slim/slim": "4.*",
+		"slim/psr7": "^1.8",
+		"php-di/slim-bridge": "^3.4",
+		"vlucas/phpdotenv": "^5.6",
+		"twig/twig": "^3.0"
+	},
+	"require-dev": {
+		"symfony/var-dumper": "^7.3",
+		"filp/whoops": "^2.18"
+	},
+	"config": {
+		"process-timeout": 0
+	}
+}
