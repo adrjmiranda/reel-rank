@@ -4,6 +4,15 @@ return [
   "baseUrl" => fn(): string => baseUrl(),
   "is_dev" => fn(): bool => isDev(),
   "asset" => fn(string $filePath): string => baseUrl() . "/{$filePath}",
+  "movie_img" => function (string $imgName): string {
+    $baseUrl = baseUrl();
+    $imgUrl = "{$baseUrl}/img/default/cape.webp";
+
+    if (!empty($imgName))
+      $imgUrl = "{$baseUrl}/img/movies/{$imgName}";
+
+    return $imgUrl;
+  },
   "vite_assets" => function (string $type): string {
     $viteMainRoot = env("VITE_MAIN_ROOT");
     if (isDev()) {
