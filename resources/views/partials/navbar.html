@@ -1,0 +1,56 @@
+<nav
+	x-data="navbar"
+	class="bg-black h-20 border-solid border-b-2 shadow-xl shadow-white/10 md:shadow-none border-b-poppy absolute md:static z-10 w-[calc(100vw---spacing(4))] md:w-full rounded-sm md:rounded-none -translate-x-1/2 left-1/2 top-2 md:top-0 md:translate-0 md:left-0"
+>
+	<div class="wrapper flex items-center justify-between bg-transparent h-full">
+		{% include 'partials/logo.html' %}
+
+		<button
+			type="button"
+			@click="toggle()"
+			class="flex md:hidden text-3xl"
+		>
+			<i x-bind:class="active ? 'ph-x' : 'ph-list'"></i>
+		</button>
+
+		<ul
+			class="flex flex-col md:flex-row bg-black border-solid z-30 border-egg shadow-xl shadow-white/10 md:shadow-none md:opacity-100 md:border-none border md:bg-transparent items-center gap-4 absolute left-0 md:static p-4 md:p-0 w-[calc(100vw---spacing(4))] transition-all duration-500 ease-in-out md:top-0 md:w-auto rounded-sm"
+			x-bind:class="active ? 'top-24 opacity-100' : '-top-64 opacity-0'"
+		>
+			<li class="w-full md:mb-0 mb-6">
+				<form
+					action="#"
+					class="flex items-center gap-2 h-12 md:h-auto relative"
+				>
+					<input
+						type="search"
+						name="search"
+						class="bg-dark py-1 px-2 h-full ring-gray-800 ring-1 placeholder:font-light text-base md:text-sm flex-1 pr-12 md:pr-0 shadow-xl shadow-white/10 md:shadow-none"
+						placeholder="Buscar filme"
+					/>
+					<button
+						type="submit"
+						class="flex items-center justify-center text-2xl md:text-base right-2 md:right-0 bg-deep md:bg-transparent p-1 rounded-sm md:p-0 md:rounded-none md:static absolute ring-gray-800 ring-1 md:ring-0"
+					>
+						<i class="ph ph-magnifying-glass"></i>
+					</button>
+				</form>
+			</li>
+			<li class="w-full">
+				<a
+					href="/login"
+					class="primary-btn"
+					>Login</a
+				>
+			</li>
+			<span class="hidden md:inline">|</span>
+			<li class="w-full">
+				<a
+					href="/registrar"
+					class="secondary-btn"
+					>Registrar</a
+				>
+			</li>
+		</ul>
+	</div>
+</nav>

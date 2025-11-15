@@ -1,0 +1,132 @@
+@import 'tailwindcss';
+
+@import './fonts/Oswald.css';
+@import './fonts/Montserrat.css';
+
+@import 'phosphor-icons/src/css/icons.css';
+
+@theme {
+	--color-dark: #0d0c0f;
+	--color-deep: #1a161f;
+
+	--color-poppy: #ff9408;
+	--color-egg: #ffbe19;
+
+	--font-headline: 'Oswald', sans-serif; /* 200 300 400 500 600 700 */
+	--font-content:
+		'Montserrat', sans-serif; /* 100 200 300 400 500 600 700 800 900 */
+}
+
+@layer base {
+	*,
+	*::before,
+	*::after {
+		@apply font-content border-none outline-none shadow-none text-gray-300 box-border;
+	}
+
+	html,
+	body {
+		@apply scroll-smooth min-h-full;
+	}
+
+	body {
+		@apply overflow-x-hidden bg-dark;
+	}
+
+	:is(h1, h2, h3, h4, h5, h6),
+	:is(h1, h2, h3, h4, h5, h6) > span {
+		@apply font-headline font-semibold text-white uppercase;
+	}
+
+	h1 {
+		@apply text-4xl md:text-5xl;
+	}
+
+	h2 {
+		@apply text-3xl md:text-4xl;
+	}
+
+	h3 {
+		@apply text-2xl md:text-3xl;
+	}
+
+	h4 {
+		@apply text-xl md:text-2xl;
+	}
+
+	h5 {
+		@apply text-lg md:text-xl;
+	}
+
+	h6 {
+		@apply text-base md:text-lg;
+	}
+
+	button,
+	select {
+		@apply cursor-pointer;
+	}
+
+	button,
+	input,
+	select,
+	textarea {
+		@apply rounded-sm;
+	}
+
+	img {
+		@apply block h-auto max-w-full;
+	}
+
+	button i,
+	a i {
+		@apply pointer-events-none;
+	}
+
+	[x-cloak] {
+		display: none !important;
+	}
+}
+
+@layer components {
+	.content {
+		@apply min-h-screen md:min-h-[calc(100vh---spacing(90))] pb-[calc(--spacing(170))] md:pb-0 pt-24 md:pt-0;
+	}
+
+	.wrapper {
+		@apply max-w-6xl mx-auto px-2 md:px-4;
+	}
+
+	.section {
+		@apply py-12;
+	}
+
+	.primary-btn {
+		@apply rounded-sm py-1 px-3 bg-egg text-sm font-semibold text-black transition-colors duration-300 ease-in-out hover:bg-poppy capitalize text-center w-full md:w-fit inline-block text-nowrap;
+	}
+
+	.secondary-btn {
+		@apply rounded-sm py-1 px-3 bg-poppy text-sm font-semibold text-black transition-colors duration-300 ease-in-out hover:bg-egg capitalize text-center w-full md:w-fit inline-block text-nowrap;
+	}
+
+	.form-field {
+		@apply flex flex-col gap-1 bg-deep rounded-sm p-1 text-sm relative h-15;
+	}
+
+	.form-field-label {
+		@apply absolute font-medium top-5 left-4 transition-all duration-200 ease-in-out;
+	}
+
+	.form-field-input {
+		@apply border border-solid border-gray-700 pt-4 pb-0 px-3 h-full;
+	}
+
+	.form-field-input:focus {
+		@apply border-gray-600;
+	}
+
+	.form-field-input:focus + .form-field-label,
+	.form-field-input:not(:placeholder-shown) + .form-field-label {
+		@apply border top-3 left-4 text-xs text-egg;
+	}
+}

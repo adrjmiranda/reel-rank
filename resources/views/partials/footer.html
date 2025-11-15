@@ -1,0 +1,117 @@
+<footer
+	class="bg-black border-solid border-t-2 border-t-poppy absolute z-10 md:static shadow-xl shadow-white/10 md:shadow-none md:w-full w-[calc(100vw---spacing(4))] -translate-x-1/2 left-1/2 rounded-sm md:translate-0 md:left-0 md:rounded-none bottom-2 overflow-hidden"
+>
+	<div class="wrapper px-4 md:px-2">
+		<div class="grid md:grid-cols-3 gap-16 md:gap-6 section">
+			<div>
+				{% include 'partials/logo.html' %}
+				<p class="font-light text-[15px] mt-6">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
+					deserunt officia corrupti possimus molestias nisi?
+				</p>
+			</div>
+
+			<div>
+				<h4
+					class="text-egg font-bold mb-8 border-l-4 border-l-poppy border-solid pl-4 leading-5"
+				>
+					Navegar
+				</h4>
+
+				<ul class="text-sm font-semibold capitalize flex flex-col gap-2">
+					<li>
+						<a
+							href="#"
+							class="transition-colors duration-200 ease-in-out hover:text-poppy flex items-center"
+						>
+							Adicionar filme
+						</a>
+					</li>
+					<li>
+						<a
+							href="#"
+							class="transition-colors duration-200 ease-in-out hover:text-poppy flex items-center"
+						>
+							Fazer crítica
+						</a>
+					</li>
+					<li>
+						<a
+							href="/login"
+							class="transition-colors duration-200 ease-in-out hover:text-poppy flex items-center"
+						>
+							Login
+						</a>
+					</li>
+					<li>
+						<a
+							href="/register"
+							class="transition-colors duration-200 ease-in-out hover:text-poppy flex items-center"
+						>
+							Criar conta
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div>
+				<h4
+					class="text-egg font-bold mb-8 border-l-4 border-l-poppy border-solid pl-4 leading-5"
+				>
+					Redes sociais
+				</h4>
+
+				<ul class="text-sm font-semibold flex flex-col gap-2">
+					<li>
+						<a
+							href="#"
+							target="_blank"
+							class="transition-colors group flex items-center gap-2"
+						>
+							<i class="ph ph-facebook-logo text-egg text-xl"></i
+							><span
+								class="group-hover:text-poppy transition-colors duration-200 ease-in-out"
+								>Movie Star | Page</span
+							>
+						</a>
+					</li>
+					<li>
+						<a
+							href="#"
+							target="_blank"
+							class="transition-colors group flex items-center gap-2"
+						>
+							<i class="ph ph-instagram-logo text-egg text-xl"></i
+							><span
+								class="group-hover:text-poppy transition-colors duration-200 ease-in-out"
+								>@moviestar</span
+							>
+						</a>
+					</li>
+					<li>
+						<a
+							href="#"
+							target="_blank"
+							class="transition-colors group flex items-center gap-2"
+						>
+							<i class="ph ph-pinterest-logo text-egg text-xl"></i
+							><span
+								class="group-hover:text-poppy transition-colors duration-200 ease-in-out"
+								>@moviestararts</span
+							>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="flex justify-center items-center text-center bg-poppy py-2">
+		<p class="flex items-center gap-1">
+			<i class="ph ph-star text-black"></i>
+			<span class="text-black text-xs font-medium"
+				>{{ site_title }} &copy; 2025</span
+			>
+		</p>
+	</div>
+</footer>
