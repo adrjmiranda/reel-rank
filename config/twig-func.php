@@ -13,6 +13,15 @@ return [
 
     return $imgUrl;
   },
+  "user_image" => function (string $imgName): string {
+    $baseUrl = baseUrl();
+    $imgUrl = "{$baseUrl}/img/default/avatar.webp";
+
+    if (!empty($imgName))
+      $imgUrl = "{$baseUrl}/img/users/{$imgName}";
+
+    return $imgUrl;
+  },
   "vite_assets" => function (string $type): string {
     $viteMainRoot = env("VITE_MAIN_ROOT");
     if (isDev()) {
