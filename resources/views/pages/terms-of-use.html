@@ -1,7 +1,145 @@
-{% extends 'layout/base.html' %}{% block container %}
+{% extends 'layout/base.html' %} {% block container %}
 
 <section class="section">
-	<div class="wrapper">Terms of use</div>
+	<div class="wrapper">
+		<h1 class="font-medium text-3xl md:text-4xl mb-12">Termos de Uso</h1>
+
+		<div>
+			<p class="leading-7 font-normal my-3">
+				Última atualização: {{ "now"|date("d/m/Y") }}
+			</p>
+			<p class="leading-7 font-normal my-3">
+				Bem-vindo ao Reel Rank! Estes Termos de Uso regulamentam o acesso e o
+				uso da nossa plataforma de críticas e avaliações de filmes. Ao utilizar
+				o Reel Rank, você concorda integralmente com estes termos.
+			</p>
+			<p class="leading-7 font-normal my-3">
+				Caso você não concorde com algum ponto dos termos, recomendamos que
+				interrompa o uso da plataforma.
+			</p>
+		</div>
+
+		<hr class="w-full h-[0.05rem] bg-gray-800 my-6" />
+
+		<div class="space-y-8">
+			<section>
+				<h2 class="font-semibold text-xl mb-3">1. 📌 Uso da Plataforma</h2>
+				<p class="leading-7 my-2">
+					O Reel Rank é destinado ao compartilhamento de críticas, opiniões e
+					avaliações sobre filmes. Você concorda em utilizar a plataforma de
+					forma responsável, ética e dentro da lei.
+				</p>
+				<p class="leading-7 my-2">É proibido:</p>
+
+				<ul class="list-disc ml-6 leading-7">
+					<li>Publicar conteúdo ofensivo, discriminatório ou ilegal</li>
+					<li>Praticar spam ou comportamento abusivo</li>
+					<li>Tentar burlar a segurança da plataforma</li>
+					<li>Utilizar contas falsas ou se passar por terceiros</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2 class="font-semibold text-xl mb-3">
+					2. 📝 Conteúdo Publicado pelo Usuário
+				</h2>
+				<p class="leading-7 my-2">
+					Todo conteúdo que você publicar — incluindo críticas, comentários e
+					avaliações — continua sendo seu. Entretanto, ao postar no Reel Rank,
+					você concede uma licença não exclusiva para exibirmos esse conteúdo
+					dentro da plataforma.
+				</p>
+				<p class="leading-7 my-2">
+					O Reel Rank não é responsável por opiniões publicadas pelos usuários.
+				</p>
+			</section>
+
+			<section>
+				<h2 class="font-semibold text-xl mb-3">
+					3. 🔒 Privacidade e Dados Pessoais
+				</h2>
+				<p class="leading-7 my-2">
+					O uso da plataforma também está sujeito à nossa
+					<a
+						href="/politicas-de-privacidade"
+						class="text-egg font-medium transition-colors duration-200 ease-in-out hover:text-poppy"
+						>Política de Privacidade</a
+					>, onde explicamos como coletamos, usamos e protegemos seus dados
+					pessoais.
+				</p>
+			</section>
+
+			<section>
+				<h2 class="font-semibold text-xl mb-3">
+					4. ⚠️ Responsabilidades do Usuário
+				</h2>
+				<p class="leading-7 my-2">Você concorda em:</p>
+
+				<ul class="list-disc ml-6 leading-7">
+					<li>Fornecer informações verdadeiras ao criar sua conta</li>
+					<li>Manter suas credenciais de acesso seguras</li>
+					<li>Responder pelo conteúdo que publicar</li>
+				</ul>
+
+				<p class="leading-7 my-2">
+					O Reel Rank não se responsabiliza por perdas causadas pelo uso
+					indevido da conta.
+				</p>
+			</section>
+
+			<section>
+				<h2 class="font-semibold text-xl mb-3">
+					5. 🛠️ Modificação ou Interrupção do Serviço
+				</h2>
+				<p class="leading-7 my-2">
+					Podemos atualizar, modificar ou interromper partes da plataforma a
+					qualquer momento, com ou sem aviso prévio. Faremos o possível para
+					notificar quando houver mudanças relevantes.
+				</p>
+			</section>
+
+			<section>
+				<h2 class="font-semibold text-xl mb-3">6. 📤 Encerramento de Conta</h2>
+				<p class="leading-7 my-2">
+					Você pode solicitar a exclusão da sua conta a qualquer momento. Também
+					nos reservamos o direito de suspender ou excluir contas que violem
+					estes termos.
+				</p>
+			</section>
+
+			<section>
+				<h2 class="font-semibold text-xl mb-3">
+					7. ⚖️ Limitação de Responsabilidade
+				</h2>
+				<p class="leading-7 my-2">
+					O Reel Rank é fornecido “como está”. Não garantimos disponibilidade
+					contínua nem ausência de falhas. Não nos responsabilizamos por danos
+					indiretos ou prejuízos decorrentes do uso da plataforma.
+				</p>
+			</section>
+
+			<section>
+				<h2 class="font-semibold text-xl mb-3">8. 🔄 Alterações nos Termos</h2>
+				<p class="leading-7 my-2">
+					Podemos atualizar estes Termos de Uso periodicamente. Caso haja
+					mudanças significativas, informaremos os usuários através da
+					plataforma ou por e-mail.
+				</p>
+			</section>
+
+			<section>
+				<h2 class="font-semibold text-xl mb-3">9. 📬 Contato</h2>
+				<p class="leading-7 my-2">
+					Se você tiver dúvidas sobre estes Termos de Uso, entre em contato:
+				</p>
+
+				<p class="leading-7 my-1">
+					E-mail:
+					<span class="font-medium">{{ contact_email }}</span>
+				</p>
+			</section>
+		</div>
+	</div>
 </section>
 
 {% endblock %}
