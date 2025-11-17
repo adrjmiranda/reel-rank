@@ -14,4 +14,11 @@ class MovieController extends Controller
 
     return $response;
   }
+
+  public function create(Request $request, Response $response): Response
+  {
+    $response->getBody()->write($this->view("pages.movies.create"));
+
+    return $response;
+  }
 }

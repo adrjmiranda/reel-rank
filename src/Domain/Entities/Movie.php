@@ -4,6 +4,7 @@ namespace MovieStar\Domain\Entities;
 
 use MovieStar\Domain\ValueObjects\CategoryId;
 use MovieStar\Domain\ValueObjects\CreatedAt;
+use MovieStar\Domain\ValueObjects\Description;
 use MovieStar\Domain\ValueObjects\Duration;
 use MovieStar\Domain\ValueObjects\Id;
 use MovieStar\Domain\ValueObjects\Image;
@@ -22,6 +23,7 @@ class Movie extends Entity
     private ?Duration $duration = null,
     private ?Image $image = null,
     private ?TrailerUrl $trailerUrl = null,
+    private ?Description $description = null,
     private ?CreatedAt $createdAt = null,
     private ?UpdatedAt $updatedAt = null
   ) {
@@ -56,5 +58,10 @@ class Movie extends Entity
   public function userId(): UserId
   {
     return $this->userId;
+  }
+
+  public function description(): ?Description
+  {
+    return $this->description;
   }
 }
