@@ -38,36 +38,48 @@
 					method="post"
 					class="flex flex-col gap-2"
 				>
-					<div class="form-field">
-						<input
-							type="email"
-							name="email"
-							id="email"
-							class="form-field-input"
-							placeholder=""
-							required
-						/>
-						<label
-							for="email"
-							class="form-field-label"
-							>E-mail:</label
-						>
+					<div>
+						<div class="form-field">
+							<input
+								type="email"
+								name="email"
+								id="email"
+								class="form-field-input"
+								placeholder=""
+								required
+							/>
+							<label
+								for="email"
+								class="form-field-label"
+								>E-mail:</label
+							>
+						</div>
+						<p class="text-red-500 text-xs text-center leading-2 invisible">
+							Message error
+						</p>
 					</div>
-					<div class="form-field">
-						<input
-							type="password"
-							name="password"
-							id="password"
-							class="form-field-input"
-							placeholder=""
-							required
-						/>
-						<label
-							for="password"
-							class="form-field-label"
-							>Senha:</label
-						>
+
+					<div>
+						<div class="form-field">
+							<input
+								type="password"
+								name="password"
+								id="password"
+								class="form-field-input"
+								placeholder=""
+								required
+							/>
+							<label
+								for="password"
+								class="form-field-label"
+								>Senha:</label
+							>
+						</div>
+						<p class="text-red-500 text-xs text-center leading-2 invisible">
+							Message error
+						</p>
 					</div>
+
 					<div class="text-right my-4">
 						<button
 							type="submit"

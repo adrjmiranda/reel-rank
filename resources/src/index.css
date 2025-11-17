@@ -121,12 +121,19 @@
 		@apply border border-solid border-gray-700 pt-4 pb-0 px-3 h-full;
 	}
 
-	.form-field-input:focus {
+	.form-field-textarea {
+		@apply border border-solid border-gray-700 pt-4 pb-0 px-3 h-full;
+	}
+
+	.form-field-input:focus,
+	.form-field-textarea:focus {
 		@apply border-gray-600;
 	}
 
 	.form-field-input:focus + .form-field-label,
-	.form-field-input:not(:placeholder-shown) + .form-field-label {
+	.form-field-input:not(:placeholder-shown) + .form-field-label,
+	.form-field-textarea:focus + .form-field-label,
+	.form-field-textarea:not(:placeholder-shown) + .form-field-label {
 		@apply border top-3 left-4 text-xs text-egg;
 	}
 }
