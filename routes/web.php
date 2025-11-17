@@ -16,8 +16,9 @@ $app->get('/politicas-de-privacidade', [PrivacyPolicies::class, 'index']);
 $app->get('/termos-de-uso', [TermsOfUse::class, 'index']);
 
 // Movies
-$app->get('/movie/{id}', [MovieController::class, 'show']);
+$app->get('/filme/{id}', [MovieController::class, 'show']);
 
 // Users
-$app->get('/user/{id}', [UserController::class, 'show']);
-$app->get('/profile/{id}', [UserController::class, 'profile']);
+$app->get('/usuario/{id}', [UserController::class, 'show']);
+$app->get('/perfil', [UserController::class, 'profile']);
+$app->get('/perfil/edit', [UserController::class, 'edit']);
