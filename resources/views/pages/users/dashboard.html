@@ -1,0 +1,36 @@
+{% extends 'layout/base.html' %}{% block container %}
+
+<section class="section pb-42 md:pb-16">
+	<div class="wrapper">
+		<div class="mb-6 bg-deep p-4 rounded-sm text-center md:text-left">
+			<h1
+				class="normal-case font-normal mb-4 border-l-4 border-solid border-egg w-fit pl-4 text-3xl md:text-4xl leading-8"
+			>
+				Veja todos os filmes postados por você:
+			</h1>
+			<p>
+				Aqui sua crítica pode receber premiassões.
+				<a
+					href="#"
+					class="text-egg transition-colors duration-300 ease-in-out hover:text-poppy font-medium"
+					>Saiba como</a
+				>.
+			</p>
+		</div>
+
+		<div>
+      <table class="flex flex-col gap-2 text-center bg-deep p-2 rounded-sm">
+        <thead>
+          {% include "partials/table/dashboard-head.html" %}
+				</thead>
+				<tbody class="flex flex-col gap-1">
+          {% include "partials/table/dashboard-row.html" %}
+        </tbody>
+			</table>
+      {% include "partials/pagination.html" %}
+    </div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

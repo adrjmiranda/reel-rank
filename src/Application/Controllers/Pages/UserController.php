@@ -28,4 +28,11 @@ class UserController extends Controller
 
     return $response;
   }
+
+  public function dashboard(Request $request, Response $response): Response
+  {
+    $response->getBody()->write($this->view("pages.users.dashboard"));
+
+    return $response;
+  }
 }

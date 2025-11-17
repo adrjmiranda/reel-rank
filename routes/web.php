@@ -24,3 +24,4 @@ $app->get('/editar/filme', [MovieController::class, 'edit']);
 $app->get('/usuario/{id}', [UserController::class, 'show']);
 $app->get('/perfil', [UserController::class, 'profile']);
 $app->get('/perfil/edit', [UserController::class, 'edit']);
+$app->get('/dashboard', [UserController::class, 'dashboard']);
