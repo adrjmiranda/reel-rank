@@ -1,0 +1,199 @@
+{% extends 'layout/base.html' %}{% block container %}
+
+<section class="section">
+	<div class="wrapper">
+		<h1 class="font-medium text-3xl md:text-4xl mb-12">
+			Política de Privacidade
+		</h1>
+
+		<div>
+			<p class="leading-7 font-normal my-3">
+				Última atualização: {{ "now"|date("d/m/Y") }}
+			</p>
+			<p class="leading-7 font-normal my-3">
+				A sua privacidade é importante para nós. Esta Política de Privacidade
+				explica como o Reel Rank coleta, utiliza, armazena e protege seus dados
+				pessoais ao utilizar nossa plataforma de críticas e avaliações de
+				filmes.
+			</p>
+			<p class="leading-7 font-normal my-3">
+				Ao acessar ou utilizar o Reel Rank, você concorda com as práticas
+				descritas nesta política.
+			</p>
+		</div>
+
+		<hr class="w-full h-[0.05rem] bg-gray-800 my-6" />
+
+		<div class="space-y-8">
+			<!-- 1. Informações que coletamos -->
+			<div>
+				<h2 class="text-2xl font-semibold mb-4">
+					1. 📘 Informações que Coletamos
+				</h2>
+				<p class="leading-7 font-normal mb-4">
+					Coletamos apenas os dados necessários para garantir o funcionamento
+					adequado da plataforma.
+				</p>
+
+				<h3 class="text-xl font-medium mb-2">
+					1.1 Informações fornecidas pelo usuário
+				</h3>
+				<ul class="list-disc ml-6 space-y-1">
+					<li>Nome e sobrenome</li>
+					<li>Endereço de e-mail</li>
+					<li>Senha (armazenada de forma criptografada)</li>
+					<li>
+						Conteúdo gerado pelo usuário (críticas, avaliações, comentários)
+					</li>
+				</ul>
+
+				<h3 class="text-xl font-medium mt-6 mb-2">
+					1.2 Informações coletadas automaticamente
+				</h3>
+				<ul class="list-disc ml-6 space-y-1">
+					<li>Endereço IP</li>
+					<li>Navegador e sistema operacional</li>
+					<li>Data e hora de acesso</li>
+					<li>Cookies e dados de navegação</li>
+					<li>Páginas acessadas dentro da plataforma</li>
+				</ul>
+			</div>
+
+			<!-- 2. Como utilizamos seus dados -->
+			<div>
+				<h2 class="text-2xl font-semibold mb-4">
+					2. 🎯 Como Utilizamos Seus Dados
+				</h2>
+				<p class="leading-7 font-normal mb-4">
+					Os dados coletados são utilizados para:
+				</p>
+				<ul class="list-disc ml-6 space-y-1">
+					<li>Criar e manter sua conta</li>
+					<li>Permitir que você publique críticas e avaliações</li>
+					<li>Melhorar a experiência de uso da plataforma</li>
+					<li>Prevenir fraudes e garantir segurança</li>
+					<li>
+						Enviar comunicações relativas à conta (ex.: recuperação de senha)
+					</li>
+				</ul>
+			</div>
+
+			<!-- 3. Cookies -->
+			<div>
+				<h2 class="text-2xl font-semibold mb-4">3. 🍪 Cookies</h2>
+				<p class="leading-7 font-normal mb-3">Utilizamos cookies para:</p>
+				<ul class="list-disc ml-6 space-y-1">
+					<li>Manter você conectado</li>
+					<li>Salvar preferências de navegação</li>
+					<li>Coletar métricas de acesso</li>
+				</ul>
+				<p class="leading-7 font-normal mt-3">
+					Você pode desativar cookies no navegador, mas alguns recursos podem
+					deixar de funcionar corretamente.
+				</p>
+			</div>
+
+			<!-- 4. Segurança dos Dados -->
+			<div>
+				<h2 class="text-2xl font-semibold mb-4">4. 🔒 Segurança dos Dados</h2>
+				<p class="leading-7 font-normal mb-3">
+					Tomamos medidas técnicas e organizacionais para proteger seus dados,
+					incluindo:
+				</p>
+				<ul class="list-disc ml-6 space-y-1">
+					<li>Criptografia de senhas</li>
+					<li>Conexões seguras (HTTPS)</li>
+					<li>Controles de acesso internos</li>
+				</ul>
+				<p class="leading-7 font-normal mt-3">
+					Apesar disso, nenhum sistema é 100% seguro. Em caso de incidente,
+					notificaremos os usuários afetados conforme exigido por lei.
+				</p>
+			</div>
+
+			<!-- 5. Compartilhamento de Dados -->
+			<div>
+				<h2 class="text-2xl font-semibold mb-4">
+					5. 📤 Compartilhamento de Dados
+				</h2>
+				<p class="leading-7 font-normal mb-3">
+					Nós não vendemos seus dados pessoais. Podemos compartilhar informações
+					apenas quando necessário:
+				</p>
+				<ul class="list-disc ml-6 space-y-1">
+					<li>Para cumprir obrigações legais</li>
+					<li>Para parceiros de infraestrutura (ex.: hospedagem)</li>
+					<li>Para prevenir uso indevido da plataforma</li>
+				</ul>
+				<p class="leading-7 font-normal mt-3">
+					Todos os terceiros envolvidos seguem normas de proteção de dados.
+				</p>
+			</div>
+
+			<!-- 6. Serviços de terceiros -->
+			<div>
+				<h2 class="text-2xl font-semibold mb-4">6. 🌍 Serviços de Terceiros</h2>
+				<p class="leading-7 font-normal">
+					O Reel Rank pode integrar serviços externos, como APIs de filmes,
+					ferramentas analíticas e provedores de hospedagem. Esses serviços
+					podem coletar dados conforme suas próprias políticas de privacidade.
+				</p>
+			</div>
+
+			<!-- 7. Direitos do usuário -->
+			<div>
+				<h2 class="text-2xl font-semibold mb-4">7. 👤 Direitos do Usuário</h2>
+				<p class="leading-7 font-normal mb-3">Você tem direito a:</p>
+				<ul class="list-disc ml-6 space-y-1">
+					<li>Acessar seus dados pessoais</li>
+					<li>Solicitar correção de informações</li>
+					<li>Solicitar exclusão da conta e dados</li>
+					<li>Retirar consentimento</li>
+					<li>Solicitar cópia de seus dados (portabilidade)</li>
+				</ul>
+				<p class="leading-7 font-normal mt-3">
+					Para exercer seus direitos, entre em contato:
+					<span class="text-egg font-medium">{{ contact_email }}</span>
+				</p>
+			</div>
+
+			<!-- 8. Retenção de Dados -->
+			<div>
+				<h2 class="text-2xl font-semibold mb-4">8. 🗂️ Retenção de Dados</h2>
+				<p class="leading-7 font-normal mb-3">
+					Os dados são mantidos enquanto sua conta estiver ativa. Após exclusão,
+					dados essenciais podem permanecer por período limitado para:
+				</p>
+				<ul class="list-disc ml-6 space-y-1">
+					<li>Cumprimento legal</li>
+					<li>Prevenção de fraudes</li>
+					<li>Auditorias internas</li>
+				</ul>
+			</div>
+
+			<!-- 9. Alterações nesta política -->
+			<div>
+				<h2 class="text-2xl font-semibold mb-4">
+					9. 🔄 Alterações nesta Política
+				</h2>
+				<p class="leading-7 font-normal">
+					Podemos atualizar esta política periodicamente. Sempre que mudanças
+					relevantes ocorrerem, notificaremos você por e-mail ou dentro da
+					plataforma.
+				</p>
+			</div>
+
+			<!-- 10. Contato -->
+			<div>
+				<h2 class="text-2xl font-semibold mb-4">10. 📬 Contato</h2>
+				<p class="leading-7 font-normal">
+					Se tiver dúvidas sobre esta Política de Privacidade, entre em
+					contato:<br />
+					<span class="text-egg font-medium">{{ contact_email }}</span>
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}
