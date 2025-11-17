@@ -1,0 +1,79 @@
+{% extends 'layout/base.html' %}{% block container %}
+
+<section class="section pb-42 md:pb-16">
+	<div class="wrapper">
+		<div class="grid md:grid-cols-2 gap-6">
+			<div>
+				<div
+					class="flex items-center gap-4 bg-linear-to-r from-black p-2 rounded-sm mb-4"
+				>
+					<img
+						src="{{ user_image('') }}"
+						alt="User name"
+						class="rounded-sm h-12 w-12 ring-3 ring-poppy cursor-pointer"
+					/>
+					<h1
+						class="font-normal capitalize text-2xl md:text-3xl bg-linear-to-r from-deep rounded-sm p-2 text-egg"
+					>
+						User name
+					</h1>
+				</div>
+
+				<div
+					class="p-2 bg-deep rounded-sm ring-1 ring-gray-800 shadow-xl shadow-gray-900/80"
+				>
+					<h5 class="mb-4 bg-dark p-2 rounded-sm">Bio:</h5>
+					<div
+						x-data="{
+          hidden: true,
+          toggle() {
+            this.hidden = !this.hidden
+          }
+        }"
+						class="rounded-sm bg-dark/45 p-2"
+					>
+						<p
+							class="font-normal leading-7 italic"
+							x-bind:class="hidden ? 'line-clamp-3' : 'line-clamp-none'"
+						>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+							fugiat numquam itaque commodi accusamus soluta cum, temporibus
+							assumenda facilis libero ad. Sequi repellat nemo atque reiciendis
+							quibusdam! Eveniet, excepturi fugit.
+						</p>
+						<button
+							type="button"
+							class="underline text-egg font-light transition-colors duration-200 ease-in-out hover:text-poppy"
+							@click="toggle()"
+							x-text="hidden ? 'mais' : 'menos'"
+						></button>
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<div
+					class="bg-deep p-2 rounded-sm text-center md:text-left ring-1 ring-gray-800 shadow-xl shadow-gray-900/80 mb-4"
+				>
+					<h3
+						class="normal-case font-semibold border-l-4 border-solid border-egg w-fit pl-4 text-3xl leading-8"
+					>
+						Críticas Postadas
+					</h3>
+				</div>
+
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-4">
+					{% include "partials/user-movie-card.html" %}
+					<!---->
+					{% include "partials/user-movie-card.html" %}
+					<!---->
+					{% include "partials/user-movie-card.html" %}
+					<!---->
+				</div>
+				{% include "partials/pagination.html" %}
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

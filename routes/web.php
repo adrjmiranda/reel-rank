@@ -6,6 +6,7 @@ use MovieStar\Application\Controllers\Pages\MovieController;
 use MovieStar\Application\Controllers\Pages\PrivacyPolicies;
 use MovieStar\Application\Controllers\Pages\RegisterController;
 use MovieStar\Application\Controllers\Pages\TermsOfUse;
+use MovieStar\Application\Controllers\Pages\UserController;
 
 // Public
 $app->get('/', [HomeController::class, 'index']);
@@ -18,3 +19,5 @@ $app->get('/termos-de-uso', [TermsOfUse::class, 'index']);
 $app->get('/movie/{id}', [MovieController::class, 'show']);
 
 // Users
+$app->get('/user/{id}', [UserController::class, 'show']);
+$app->get('/profile/{id}', [UserController::class, 'profile']);

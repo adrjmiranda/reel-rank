@@ -29,7 +29,9 @@
 			<div
 				class="flex flex-col gap-4 sm:col-span-4 md:col-span-5 col-span-full"
 			>
-				<div class="bg-deep p-2 rounded-sm text-center md:text-left">
+				<div
+					class="bg-deep p-2 rounded-sm text-center md:text-left ring-1 ring-gray-800 shadow-xl shadow-gray-900/80"
+				>
 					<h1
 						class="normal-case font-semibold border-l-4 border-solid border-egg w-fit pl-4 text-3xl leading-8"
 					>
@@ -37,7 +39,9 @@
 					</h1>
 				</div>
 
-				<div class="p-2 bg-deep rounded-sm">
+				<div
+					class="p-2 bg-deep rounded-sm ring-1 ring-gray-800 shadow-xl shadow-gray-900/80"
+				>
 					<iframe
 						class="w-full h-86"
 						src="https://www.youtube.com/embed/KV9JqZPo26Y?si=EdrDqHE5K5vknnFg"
@@ -56,7 +60,7 @@
             this.hidden = !this.hidden
           }
         }"
-					class="bg-deep p-2 rounded-sm text-center md:text-left"
+					class="bg-deep p-2 rounded-sm text-center md:text-left ring-1 ring-gray-800 shadow-xl shadow-gray-900/80"
 				>
 					<p x-bind:class="hidden ? 'line-clamp-2' : 'line-clamp-none'">
 						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa,
@@ -76,20 +80,25 @@
 			<div
 				class="col-span-full sm:col-span-3 md:col-span-2 flex flex-col gap-4"
 			>
-				<div class="p-2 bg-deep rounded-sm">
+				<div
+					class="p-2 bg-deep rounded-sm ring-1 ring-gray-800 shadow-xl shadow-gray-900/80"
+				>
 					<img
 						src="{{ movie_img('') }}"
 						alt="Movie title"
 						class="max-h-[415px] rounded-sm w-full object-center object-cover"
 					/>
 				</div>
-				<div class="p-2 bg-deep rounded-sm flex flex-col">
+				<div
+					class="p-2 bg-deep rounded-sm flex flex-col ring-1 ring-gray-800 shadow-xl shadow-gray-900/80"
+				>
 					<p class="text-sm flex justify-between bg-dark p-1 rounded-sm mb-2">
-						<strong class="text-egg">Duração:</strong> <span>129min</span>
+						<strong class="text-egg">Duração:</strong>
+						<span class="text-white">129min</span>
 					</p>
 					<p class="text-sm flex justify-between bg-dark p-1 rounded-sm">
 						<strong class="text-egg">Nota:</strong>
-						<span>4.5 <i class="ph-fill ph-star"></i></span>
+						<span>4.5 <i class="ph-fill ph-star text-poppy"></i></span>
 					</p>
 				</div>
 			</div>
