@@ -21,4 +21,11 @@ class MovieController extends Controller
 
     return $response;
   }
+
+  public function edit(Request $request, Response $response): Response
+  {
+    $response->getBody()->write($this->view("pages.movies.edit"));
+
+    return $response;
+  }
 }

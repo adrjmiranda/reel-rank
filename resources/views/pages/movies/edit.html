@@ -1,0 +1,177 @@
+{% extends 'layout/base.html' %}{% block container %}
+
+<section class="section pb-42 md:pb-16">
+	<div class="wrapper">
+		<div class="">
+			<div class="mb-8 bg-deep p-4 rounded-sm text-center md:text-left">
+				<h1
+					class="normal-case font-normal border-l-4 border-solid border-egg w-fit pl-4 text-3xl md:text-4xl leading-8"
+				>
+					Editar Filme
+				</h1>
+			</div>
+
+			<form
+				action=""
+				method="post"
+				class="grid sm:grid-cols-3 gap-6"
+			>
+				<div class="flex flex-col gap-6">
+					<div class="max-h-[608px]">
+						<img
+							src="{{ movie_img('') }}"
+							alt="Movie Cape"
+							class="p-2 rounded-sm bg-deep h-full w-full object-top object-cover"
+						/>
+					</div>
+
+					<div>
+						<div class="form-field">
+							<input
+								type="file"
+								name="image"
+								id="image"
+								class="form-field-input text-sm pt-6"
+								placeholder=""
+								required
+							/>
+							<label
+								for="image"
+								class="form-field-label"
+								>Imagem de capa:</label
+							>
+						</div>
+						<p
+							class="text-red-500 text-xs text-center leading-2 invisible my-1"
+						>
+							Message error
+						</p>
+					</div>
+				</div>
+
+				<div class="md:col-span-2">
+					<div>
+						<div class="form-field">
+							<input
+								type="text"
+								name="title"
+								id="title"
+								class="form-field-input"
+								placeholder=""
+								required
+							/>
+							<label
+								for="title"
+								class="form-field-label"
+								>Título:</label
+							>
+						</div>
+						<p
+							class="text-red-500 text-xs text-center leading-2 invisible my-1"
+						>
+							Message error
+						</p>
+					</div>
+
+					<div>
+						<div class="form-field">
+							<input
+								type="text"
+								name="duration"
+								id="duration"
+								class="form-field-input"
+								placeholder=""
+								required
+							/>
+							<label
+								for="duration"
+								class="form-field-label"
+								>Duração:</label
+							>
+						</div>
+						<p
+							class="text-red-500 text-xs text-center leading-2 invisible my-1"
+						>
+							Message error
+						</p>
+					</div>
+
+					<div>
+						<div class="form-field">
+							<input
+								type="text"
+								name="trailerUrl"
+								id="trailerUrl"
+								class="form-field-input"
+								placeholder=""
+								required
+							/>
+							<label
+								for="trailerUrl"
+								class="form-field-label"
+								>URL do trailer:</label
+							>
+						</div>
+						<p
+							class="text-red-500 text-xs text-center leading-2 invisible my-1"
+						>
+							Message error
+						</p>
+					</div>
+
+					<div>
+						<div class="form-field">
+							<select
+								name="categoryId"
+								id="categoryId"
+								class="form-field-select"
+							>
+								<option value="">Selecione a categoria do filme</option>
+							</select>
+							<label
+								for="categoryId"
+								class="form-field-label"
+								>Categoria:</label
+							>
+						</div>
+						<p
+							class="text-red-500 text-xs text-center leading-2 invisible my-1"
+						>
+							Message error
+						</p>
+					</div>
+
+					<div class="w-full">
+						<div class="form-field h-64">
+							<textarea
+								name="description"
+								id="description"
+								class="form-field-textarea h-full"
+								placeholder=""
+							></textarea>
+							<label
+								for="description"
+								class="form-field-label"
+								>Descrição:</label
+							>
+						</div>
+						<p class="text-red-500 text-xs text-center leading-2 invisible">
+							Message error
+						</p>
+					</div>
+
+					<div class="text-right my-2 col-span-2">
+						<button
+							type="submit"
+							class="secondary-btn py-2 px-6"
+						>
+							Postar
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

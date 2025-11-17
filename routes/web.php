@@ -18,6 +18,7 @@ $app->get('/termos-de-uso', [TermsOfUse::class, 'index']);
 // Movies
 $app->get('/filme/{id}', [MovieController::class, 'show']);
 $app->get('/postar/filme', [MovieController::class, 'create']);
+$app->get('/editar/filme', [MovieController::class, 'edit']);
 
 // Users
 $app->get('/usuario/{id}', [UserController::class, 'show']);
