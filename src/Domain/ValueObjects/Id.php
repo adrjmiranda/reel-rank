@@ -1,8 +1,8 @@
 <?php
 
-namespace MovieStar\Domain\ValueObjects;
+namespace ReelRank\Domain\ValueObjects;
 
-use MovieStar\Domain\Exception\InvalidIdException;
+use ReelRank\Domain\Exception\InvalidIdException;
 
 class Id
 {

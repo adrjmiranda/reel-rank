@@ -1,6 +1,6 @@
 <?php
 
-namespace MovieStar\Infrastructure\Database;
+namespace ReelRank\Infrastructure\Database;
 
 use PDO;
 use PDOException;

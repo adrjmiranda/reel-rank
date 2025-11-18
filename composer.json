@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"autoload": {
 		"psr-4": {
-			"MovieStar\\": "src/"
+			"ReelRank\\": "src/"
 		},
 		"files": [
 			"helpers/env.php",

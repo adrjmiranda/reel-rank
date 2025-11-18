@@ -1,8 +1,8 @@
 <?php
 
-namespace MovieStar\Application\Controllers;
+namespace ReelRank\Application\Controllers;
 
-use MovieStar\Infrastructure\Template\Engine;
+use ReelRank\Infrastructure\Template\Engine;
 use Twig\Environment;
 
 abstract class Controller

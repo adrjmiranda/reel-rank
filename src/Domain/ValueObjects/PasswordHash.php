@@ -1,8 +1,8 @@
 <?php
 
-namespace MovieStar\Domain\ValueObjects;
+namespace ReelRank\Domain\ValueObjects;
 
-use MovieStar\Domain\Exception\EmptyPasswordException;
+use ReelRank\Domain\Exception\EmptyPasswordException;
 
 final class PasswordHash
 {

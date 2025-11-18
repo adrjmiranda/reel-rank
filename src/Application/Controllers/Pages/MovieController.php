@@ -1,8 +1,8 @@
 <?php
 
-namespace MovieStar\Application\Controllers\Pages;
+namespace ReelRank\Application\Controllers\Pages;
 
-use MovieStar\Application\Controllers\Controller;
+use ReelRank\Application\Controllers\Controller;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 

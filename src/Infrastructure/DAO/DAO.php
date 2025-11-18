@@ -1,14 +1,14 @@
 <?php
 
-namespace MovieStar\Infrastructure\DAO;
+namespace ReelRank\Infrastructure\DAO;
 
 use PDO;
-use MovieStar\Infrastructure\Database\Connection;
-use MovieStar\Infrastructure\DAO\Data\Handler;
-use MovieStar\Infrastructure\DAO\Crud\Create;
-use MovieStar\Infrastructure\DAO\Crud\Read;
-use MovieStar\Infrastructure\DAO\Crud\Update;
-use MovieStar\Infrastructure\DAO\Crud\Delete;
+use ReelRank\Infrastructure\Database\Connection;
+use ReelRank\Infrastructure\DAO\Data\Handler;
+use ReelRank\Infrastructure\DAO\Crud\Create;
+use ReelRank\Infrastructure\DAO\Crud\Read;
+use ReelRank\Infrastructure\DAO\Crud\Update;
+use ReelRank\Infrastructure\DAO\Crud\Delete;
 
 abstract class DAO
 {

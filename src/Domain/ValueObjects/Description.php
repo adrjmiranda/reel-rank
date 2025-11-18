@@ -1,8 +1,8 @@
 <?php
 
-namespace MovieStar\Domain\ValueObjects;
+namespace ReelRank\Domain\ValueObjects;
 
-use MovieStar\Domain\Exception\DescriptionTooLongException;
+use ReelRank\Domain\Exception\DescriptionTooLongException;
 
 final class Description
 {

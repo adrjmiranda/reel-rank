@@ -1,10 +1,10 @@
 <?php
 
-use MovieStar\Infrastructure\DAO\Persistence\CategoryDAO;
-use MovieStar\Infrastructure\DAO\Persistence\MovieDAO;
-use MovieStar\Infrastructure\DAO\Persistence\ReviewDAO;
-use MovieStar\Infrastructure\DAO\Persistence\UserDAO;
-use MovieStar\Infrastructure\Template\Engine;
+use ReelRank\Infrastructure\DAO\Persistence\CategoryDAO;
+use ReelRank\Infrastructure\DAO\Persistence\MovieDAO;
+use ReelRank\Infrastructure\DAO\Persistence\ReviewDAO;
+use ReelRank\Infrastructure\DAO\Persistence\UserDAO;
+use ReelRank\Infrastructure\Template\Engine;
 
 return [
   UserDAO::class => fn(): UserDAO => new UserDAO(),

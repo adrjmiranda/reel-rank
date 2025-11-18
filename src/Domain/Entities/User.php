@@ -1,16 +1,16 @@
 <?php
 
-namespace MovieStar\Domain\Entities;
+namespace ReelRank\Domain\Entities;
 
-use MovieStar\Domain\ValueObjects\FirstName;
-use MovieStar\Domain\ValueObjects\LastName;
-use MovieStar\Domain\ValueObjects\Email;
-use MovieStar\Domain\ValueObjects\PasswordHash;
-use MovieStar\Domain\ValueObjects\Id;
-use MovieStar\Domain\ValueObjects\Image;
-use MovieStar\Domain\ValueObjects\Bio;
-use MovieStar\Domain\ValueObjects\CreatedAt;
-use MovieStar\Domain\ValueObjects\UpdatedAt;
+use ReelRank\Domain\ValueObjects\FirstName;
+use ReelRank\Domain\ValueObjects\LastName;
+use ReelRank\Domain\ValueObjects\Email;
+use ReelRank\Domain\ValueObjects\PasswordHash;
+use ReelRank\Domain\ValueObjects\Id;
+use ReelRank\Domain\ValueObjects\Image;
+use ReelRank\Domain\ValueObjects\Bio;
+use ReelRank\Domain\ValueObjects\CreatedAt;
+use ReelRank\Domain\ValueObjects\UpdatedAt;
 
 class User extends Entity
 {

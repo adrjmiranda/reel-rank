@@ -1,8 +1,8 @@
 <?php
 
-namespace MovieStar\Domain\ValueObjects;
+namespace ReelRank\Domain\ValueObjects;
 
-use MovieStar\Domain\Exception\TitleTooLongException;
+use ReelRank\Domain\Exception\TitleTooLongException;
 
 final class Title
 {

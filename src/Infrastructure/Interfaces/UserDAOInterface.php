@@ -1,9 +1,9 @@
 <?php
 
-namespace MovieStar\Infrastructure\Interfaces;
+namespace ReelRank\Infrastructure\Interfaces;
 
-use MovieStar\Domain\Collection\UserCollection;
-use MovieStar\Domain\Entities\User;
+use ReelRank\Domain\Collection\UserCollection;
+use ReelRank\Domain\Entities\User;
 
 interface UserDAOInterface
 {

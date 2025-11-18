@@ -1,12 +1,12 @@
 <?php
 
-namespace MovieStar\Domain\Entities;
+namespace ReelRank\Domain\Entities;
 
-use MovieStar\Domain\ValueObjects\CreatedAt;
-use MovieStar\Domain\ValueObjects\Id;
-use MovieStar\Domain\ValueObjects\Image;
-use MovieStar\Domain\ValueObjects\Name;
-use MovieStar\Domain\ValueObjects\UpdatedAt;
+use ReelRank\Domain\ValueObjects\CreatedAt;
+use ReelRank\Domain\ValueObjects\Id;
+use ReelRank\Domain\ValueObjects\Image;
+use ReelRank\Domain\ValueObjects\Name;
+use ReelRank\Domain\ValueObjects\UpdatedAt;
 
 class Category extends Entity
 {

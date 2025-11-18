@@ -1,10 +1,10 @@
 <?php
 
-namespace MovieStar\Domain\ValueObjects;
+namespace ReelRank\Domain\ValueObjects;
 
-use MovieStar\Domain\Exception\EmptyNameException;
-use MovieStar\Domain\Exception\InvalidNameException;
-use MovieStar\Domain\Exception\NameTooLongException;
+use ReelRank\Domain\Exception\EmptyNameException;
+use ReelRank\Domain\Exception\InvalidNameException;
+use ReelRank\Domain\Exception\NameTooLongException;
 
 class Name
 {

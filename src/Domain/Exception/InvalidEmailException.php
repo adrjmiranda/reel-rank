@@ -1,7 +1,7 @@
 <?php
 
 
-namespace MovieStar\Domain\Exception;
+namespace ReelRank\Domain\Exception;
 
 use Exception;
 

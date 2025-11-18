@@ -1,8 +1,8 @@
 <?php
 
-namespace MovieStar\Domain\ValueObjects;
+namespace ReelRank\Domain\ValueObjects;
 
-use MovieStar\Domain\Exception\TrailerTooLongException;
+use ReelRank\Domain\Exception\TrailerTooLongException;
 
 final class TrailerUrl
 {

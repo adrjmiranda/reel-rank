@@ -1,11 +1,11 @@
 <?php
 
-namespace MovieStar\Domain\Entities;
+namespace ReelRank\Domain\Entities;
 
 use DateTimeImmutable;
-use MovieStar\Domain\ValueObjects\CreatedAt;
-use MovieStar\Domain\ValueObjects\Id;
-use MovieStar\Domain\ValueObjects\UpdatedAt;
+use ReelRank\Domain\ValueObjects\CreatedAt;
+use ReelRank\Domain\ValueObjects\Id;
+use ReelRank\Domain\ValueObjects\UpdatedAt;
 
 abstract class Entity
 {

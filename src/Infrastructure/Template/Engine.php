@@ -1,6 +1,6 @@
 <?php
 
-namespace MovieStar\Infrastructure\Template;
+namespace ReelRank\Infrastructure\Template;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;

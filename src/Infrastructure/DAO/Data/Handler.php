@@ -1,6 +1,6 @@
 <?php
 
-namespace MovieStar\Infrastructure\DAO\Data;
+namespace ReelRank\Infrastructure\DAO\Data;
 
 use DateTimeImmutable;
 use PDO;
@@ -71,7 +71,7 @@ trait Handler
     $instance = $reflection->newInstanceArgs(
       array_map(function ($property) use ($row) {
         $typeName = ucfirst($property);
-        $typeNamespace = "MovieStar\\Domain\\ValueObjects\\{$typeName}";
+        $typeNamespace = "ReelRank\\Domain\\ValueObjects\\{$typeName}";
 
         $value = match ($property) {
           "createdAt", "updatedAt" => DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $row[$property]),

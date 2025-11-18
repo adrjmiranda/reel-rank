@@ -1,11 +1,11 @@
 <?php
 
-namespace MovieStar\Infrastructure\DAO\Persistence;
+namespace ReelRank\Infrastructure\DAO\Persistence;
 
-use MovieStar\Domain\Collection\UserCollection;
-use MovieStar\Domain\Entities\User;
-use MovieStar\Infrastructure\DAO\DAO;
-use MovieStar\Infrastructure\Interfaces\UserDAOInterface;
+use ReelRank\Domain\Collection\UserCollection;
+use ReelRank\Domain\Entities\User;
+use ReelRank\Infrastructure\DAO\DAO;
+use ReelRank\Infrastructure\Interfaces\UserDAOInterface;
 
 final class UserDAO extends DAO implements UserDAOInterface
 {

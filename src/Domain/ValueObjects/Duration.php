@@ -1,8 +1,8 @@
 <?php
 
-namespace MovieStar\Domain\ValueObjects;
+namespace ReelRank\Domain\ValueObjects;
 
-use MovieStar\Domain\Exception\InvalidDurationException;
+use ReelRank\Domain\Exception\InvalidDurationException;
 
 final class Duration
 {

@@ -1,17 +1,17 @@
 <?php
 
-namespace MovieStar\Domain\Entities;
+namespace ReelRank\Domain\Entities;
 
-use MovieStar\Domain\ValueObjects\CategoryId;
-use MovieStar\Domain\ValueObjects\CreatedAt;
-use MovieStar\Domain\ValueObjects\Description;
-use MovieStar\Domain\ValueObjects\Duration;
-use MovieStar\Domain\ValueObjects\Id;
-use MovieStar\Domain\ValueObjects\Image;
-use MovieStar\Domain\ValueObjects\Title;
-use MovieStar\Domain\ValueObjects\TrailerUrl;
-use MovieStar\Domain\ValueObjects\UpdatedAt;
-use MovieStar\Domain\ValueObjects\UserId;
+use ReelRank\Domain\ValueObjects\CategoryId;
+use ReelRank\Domain\ValueObjects\CreatedAt;
+use ReelRank\Domain\ValueObjects\Description;
+use ReelRank\Domain\ValueObjects\Duration;
+use ReelRank\Domain\ValueObjects\Id;
+use ReelRank\Domain\ValueObjects\Image;
+use ReelRank\Domain\ValueObjects\Title;
+use ReelRank\Domain\ValueObjects\TrailerUrl;
+use ReelRank\Domain\ValueObjects\UpdatedAt;
+use ReelRank\Domain\ValueObjects\UserId;
 
 class Movie extends Entity
 {

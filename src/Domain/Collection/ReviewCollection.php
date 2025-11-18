@@ -1,6 +1,6 @@
 <?php
 
-namespace MovieStar\Domain\Collection;
+namespace ReelRank\Domain\Collection;
 
 use ArrayIterator;
 use IteratorAggregate;

@@ -1,6 +1,6 @@
 <?php
 
-namespace MovieStar\Domain\ValueObjects;
+namespace ReelRank\Domain\ValueObjects;
 
 enum RatingEnum: int
 {

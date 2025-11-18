@@ -1,9 +1,9 @@
 <?php
 
-namespace MovieStar\Infrastructure\Interfaces;
+namespace ReelRank\Infrastructure\Interfaces;
 
-use MovieStar\Domain\Collection\ReviewCollection;
-use MovieStar\Domain\Entities\Review;
+use ReelRank\Domain\Collection\ReviewCollection;
+use ReelRank\Domain\Entities\Review;
 
 interface ReviewDAOInterface
 {

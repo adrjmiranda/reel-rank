@@ -1,14 +1,14 @@
 <?php
 
-namespace MovieStar\Domain\Entities;
+namespace ReelRank\Domain\Entities;
 
-use MovieStar\Domain\ValueObjects\Comment;
-use MovieStar\Domain\ValueObjects\CreatedAt;
-use MovieStar\Domain\ValueObjects\Id;
-use MovieStar\Domain\ValueObjects\MovieId;
-use MovieStar\Domain\ValueObjects\Rating;
-use MovieStar\Domain\ValueObjects\UpdatedAt;
-use MovieStar\Domain\ValueObjects\UserId;
+use ReelRank\Domain\ValueObjects\Comment;
+use ReelRank\Domain\ValueObjects\CreatedAt;
+use ReelRank\Domain\ValueObjects\Id;
+use ReelRank\Domain\ValueObjects\MovieId;
+use ReelRank\Domain\ValueObjects\Rating;
+use ReelRank\Domain\ValueObjects\UpdatedAt;
+use ReelRank\Domain\ValueObjects\UserId;
 
 class Review extends Entity
 {

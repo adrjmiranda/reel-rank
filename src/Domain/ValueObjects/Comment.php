@@ -1,8 +1,8 @@
 <?php
 
-namespace MovieStar\Domain\ValueObjects;
+namespace ReelRank\Domain\ValueObjects;
 
-use MovieStar\Domain\Exception\CommentTooLongException;
+use ReelRank\Domain\Exception\CommentTooLongException;
 
 final class Comment
 {

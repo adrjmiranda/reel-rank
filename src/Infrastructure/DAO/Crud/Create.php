@@ -1,6 +1,6 @@
 <?php
 
-namespace MovieStar\Infrastructure\DAO\Crud;
+namespace ReelRank\Infrastructure\DAO\Crud;
 
 trait Create
 {

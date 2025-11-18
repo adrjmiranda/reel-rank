@@ -1,8 +1,8 @@
 <?php
 
-namespace MovieStar\Domain\ValueObjects;
+namespace ReelRank\Domain\ValueObjects;
 
-use MovieStar\Domain\Exception\BioTooLongException;
+use ReelRank\Domain\Exception\BioTooLongException;
 
 final class Bio
 {

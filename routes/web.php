@@ -1,12 +1,12 @@
 <?php
 
-use MovieStar\Application\Controllers\Pages\HomeController;
-use MovieStar\Application\Controllers\Pages\LoginController;
-use MovieStar\Application\Controllers\Pages\MovieController;
-use MovieStar\Application\Controllers\Pages\PrivacyPolicies;
-use MovieStar\Application\Controllers\Pages\RegisterController;
-use MovieStar\Application\Controllers\Pages\TermsOfUse;
-use MovieStar\Application\Controllers\Pages\UserController;
+use ReelRank\Application\Controllers\Pages\HomeController;
+use ReelRank\Application\Controllers\Pages\LoginController;
+use ReelRank\Application\Controllers\Pages\MovieController;
+use ReelRank\Application\Controllers\Pages\PrivacyPolicies;
+use ReelRank\Application\Controllers\Pages\RegisterController;
+use ReelRank\Application\Controllers\Pages\TermsOfUse;
+use ReelRank\Application\Controllers\Pages\UserController;
 
 // Public
 $app->get('/', [HomeController::class, 'index']);

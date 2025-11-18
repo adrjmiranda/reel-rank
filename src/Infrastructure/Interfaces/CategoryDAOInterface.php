@@ -1,9 +1,9 @@
 <?php
 
-namespace MovieStar\Infrastructure\Interfaces;
+namespace ReelRank\Infrastructure\Interfaces;
 
-use MovieStar\Domain\Collection\CategoryCollection;
-use MovieStar\Domain\Entities\Category;
+use ReelRank\Domain\Collection\CategoryCollection;
+use ReelRank\Domain\Entities\Category;
 
 interface CategoryDAOInterface
 {
