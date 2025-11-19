@@ -7,11 +7,20 @@ use ReelRank\Infrastructure\Data\PersistentInput;
 
 class UserService
 {
+  private const string SESSION_AUTH_KEY = 'AUTHORIZED_USER';
+
+  private SessionService $sessionService;
+
+  public function __construct(SessionService $sessionService)
+  {
+    $this->sessionService = $sessionService;
+  }
+
   public function authentication(User $user): void
   {
-    $_SESSION['AUTHORIZED_USER'] = [
-      'id' => $user->id()->value(),
-    ];
+    $this->sessionService->set(self::SESSION_AUTH_KEY, [
+      'id' => $user->id()->value()
+    ]);
 
     $persistentInput = new PersistentInput();
     $persistentInput->clear();
@@ -19,7 +28,7 @@ class UserService
 
   public function isAuthenticated(): bool
   {
-    $auth = $_SESSION['AUTHORIZED_USER'] ?? null;
+    $auth = $this->sessionService->get(self::SESSION_AUTH_KEY);
     return $auth !== null && isset($auth['id']);
   }
 }

@@ -2,6 +2,7 @@
 
 namespace ReelRank\Application\Controllers;
 
+use ReelRank\Application\Services\SessionService;
 use ReelRank\Infrastructure\Data\PersistentInput;
 use ReelRank\Infrastructure\Data\Sanitize;
 use ReelRank\Infrastructure\Message\Flash;
@@ -17,19 +18,22 @@ abstract class Controller
   protected Sanitize $sanitize;
   protected Flash $flash;
   protected PersistentInput $persistentInput;
+  protected SessionService $sessionService;
 
   public function __construct(
     Engine $engine,
     Validation $validation,
     Sanitize $sanitize,
     Flash $flash,
-    PersistentInput $persistentInput
+    PersistentInput $persistentInput,
+    SessionService $sessionService
   ) {
     $this->twig = $engine::get();
     $this->validation = $validation;
     $this->sanitize = $sanitize;
     $this->flash = $flash;
     $this->persistentInput = $persistentInput;
+    $this->sessionService = $sessionService;
   }
 
   protected function view(string $template, array $data = []): string

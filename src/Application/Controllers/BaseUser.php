@@ -2,6 +2,7 @@
 
 namespace ReelRank\Application\Controllers;
 
+use ReelRank\Application\Services\SessionService;
 use ReelRank\Application\Services\UserService;
 use ReelRank\Infrastructure\DAO\Persistence\UserDAO;
 
@@ -17,10 +18,10 @@ abstract class BaseUser extends Controller
   protected UserDAO $userDAO;
   protected UserService $userService;
 
-  public function __construct(Engine $engine, Validation $validation, Sanitize $sanitize, Flash $flash, PersistentInput $persistentInput, UserDAO $userDAO, UserService $userService)
+  public function __construct(Engine $engine, Validation $validation, Sanitize $sanitize, SessionService $sessionService, Flash $flash, PersistentInput $persistentInput, UserDAO $userDAO, UserService $userService)
   {
     $this->userDAO = $userDAO;
     $this->userService = $userService;
-    parent::__construct($engine, $validation, $sanitize, $flash, $persistentInput);
+    parent::__construct($engine, $validation, $sanitize, $flash, $persistentInput, $sessionService);
   }
 }

@@ -41,6 +41,10 @@ The project follows a simple and scalable organization, with a clear separation 
 
 Contributions are welcome!
 
-Feel free to open issues, send suggestions, or create pull requests. ## 📝 License
+Feel free to open issues, send suggestions, or create pull requests.
+
+---
+
+## 📝 License
 
 This project is licensed under the MIT license.

@@ -1,12 +1,13 @@
 <?php
 
+use ReelRank\Application\Services\SessionService;
 use ReelRank\Application\Services\UserService;
 use ReelRank\Infrastructure\Data\PersistentInput;
 use ReelRank\Infrastructure\Message\Flash;
 
 $flashMessage = new Flash();
 $persistentInput = new PersistentInput();
-$userService = new UserService();
+$userService = new UserService(new SessionService());
 
 return [
   "baseUrl" => fn(): string => baseUrl(),
