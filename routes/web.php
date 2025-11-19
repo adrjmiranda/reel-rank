@@ -2,6 +2,7 @@
 
 use ReelRank\Application\Controllers\Pages\HomeController;
 use ReelRank\Application\Controllers\Pages\LoginController;
+use ReelRank\Application\Controllers\Pages\LogoutController;
 use ReelRank\Application\Controllers\Pages\MovieController;
 use ReelRank\Application\Controllers\Pages\PrivacyPolicies;
 use ReelRank\Application\Controllers\Pages\RegisterController;
@@ -53,4 +54,7 @@ $app->group('/', function (RouteCollectorProxy $group) {
     $group->post('perfil/edit', [UserController::class, 'edit']);
   })->addMiddleware(new CsrfTokenVerifyMiddleware());
 })->addMiddleware(new VerifyAuthenticationMiddleware());
+
+// Auth
+$app->get('/logout', [LogoutController::class, 'destroy'])->addMiddleware(new VerifyAuthenticationMiddleware());
 
