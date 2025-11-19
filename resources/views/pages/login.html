@@ -34,7 +34,7 @@
 				</div>
 
 				<form
-					action="/register"
+					action="/login"
 					method="post"
 					class="flex flex-col gap-2"
 				>
@@ -42,12 +42,14 @@
 
 					<div>
 						<div class="form-field">
+							{% set input_value = persistent_input('email') %}
 							<input
 								type="email"
 								name="email"
 								id="email"
 								class="form-field-input"
 								placeholder=""
+								value="{{ input_value is null ? '' : input_value }}"
 								required
 							/>
 							<label
@@ -56,19 +58,20 @@
 								>E-mail:</label
 							>
 						</div>
-						<p class="text-red-500 text-xs text-center leading-2 invisible">
-							Message error
-						</p>
+						{% include "partials/form-input-error.html" with { name: 'email' }
+						%}
 					</div>
 
 					<div>
 						<div class="form-field">
+							{% set input_value = persistent_input('password') %}
 							<input
 								type="password"
 								name="password"
 								id="password"
 								class="form-field-input"
 								placeholder=""
+								value="{{ input_value is null ? '' : input_value }}"
 								required
 							/>
 							<label
@@ -77,9 +80,8 @@
 								>Senha:</label
 							>
 						</div>
-						<p class="text-red-500 text-xs text-center leading-2 invisible">
-							Message error
-						</p>
+						{% include "partials/form-input-error.html" with { name: 'password'
+						} %}
 					</div>
 
 					<div class="text-right my-4">

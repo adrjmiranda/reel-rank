@@ -16,7 +16,7 @@ class UserService
     $this->sessionService = $sessionService;
   }
 
-  public function authentication(User $user): void
+  public function login(User $user): void
   {
     $this->sessionService->set(self::SESSION_AUTH_KEY, [
       'id' => $user->id()->value()
@@ -26,7 +26,12 @@ class UserService
     $persistentInput->clear();
   }
 
-  public function isAuthenticated(): bool
+  public function logout(): void
+  {
+    $this->sessionService->remove(self::SESSION_AUTH_KEY);
+  }
+
+  public function isLoggedIn(): bool
   {
     $auth = $this->sessionService->get(self::SESSION_AUTH_KEY);
     return $auth !== null && isset($auth['id']);

@@ -9,7 +9,7 @@ use ReelRank\Domain\Entities\User;
 use ReelRank\Domain\ValueObjects\Email;
 use ReelRank\Domain\ValueObjects\FirstName;
 use ReelRank\Domain\ValueObjects\LastName;
-use ReelRank\Domain\ValueObjects\PasswordHash;
+use ReelRank\Domain\ValueObjects\Password;
 
 class RegisterController extends BaseUser
 {
@@ -46,7 +46,7 @@ class RegisterController extends BaseUser
       new FirstName($data['firstName']),
       new LastName($data['lastName']),
       new Email($data['email']),
-      new PasswordHash($data['password']),
+      new Password(password_hash($data['password'], PASSWORD_DEFAULT)),
     ));
 
     if (!$createdUser) {
@@ -54,7 +54,7 @@ class RegisterController extends BaseUser
       return redirectBack($request);
     }
 
-    $this->userService->authentication($createdUser);
+    $this->userService->login($createdUser);
 
     return redirect('/perfil');
   }

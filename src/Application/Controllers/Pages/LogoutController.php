@@ -4,13 +4,13 @@ namespace ReelRank\Application\Controllers\Pages;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
-use ReelRank\Application\Controllers\Controller;
+use ReelRank\Application\Controllers\BaseUser;
 
-class LogoutController extends Controller
+class LogoutController extends BaseUser
 {
   public function destroy(Request $request, Response $response): Response
   {
-    $this->sessionService->clear();
+    $this->userService->logout();
     return redirect('/');
   }
 }

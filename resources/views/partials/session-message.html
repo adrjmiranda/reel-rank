@@ -1,7 +1,9 @@
 {% set message = session_message(key) %} {% if message|length == 2 %}
-<p
-	class="text-gray-200 font-semibold px-2 py-4 rounded-sm text-base text-center leading-2 mb-6 {{ message[1] == '' ? 'hidden' : 'block' }} {{ message[0] == 'warning' ? 'bg-yellow-500' : message[0] == 'success' ? 'bg-green-500' : 'bg-red-500' }}"
->
-	{{ message[1] }}
-</p>
+<div class="wrapper">
+	<p
+		class="text-gray-200 font-semibold px-2 py-4 rounded-sm text-base text-center leading-2 mb-6 {{ message[1] == '' ? 'hidden' : 'block' }} {{ message[0] == 'warning' ? 'bg-yellow-500' : message[0] == 'success' ? 'bg-green-500' : 'bg-red-500' }}"
+	>
+		{{ message[1] }}
+	</p>
+</div>
 {% endif %}

@@ -60,5 +60,5 @@ return [
   "flash_message" => fn(string $key): string => $flashMessage->get($key)[1] ?? '',
   "persistent_input" => fn(string $field): mixed => $persistentInput->get($field),
   "session_message" => fn(string $key): array => $flashMessage->get($key),
-  'is_logged_in' => fn(): bool => $userService->isAuthenticated()
+  'is_logged_in' => fn(): bool => $userService->isLoggedIn()
 ];

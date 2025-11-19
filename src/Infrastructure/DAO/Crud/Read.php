@@ -48,7 +48,7 @@ trait Read
       $filters = empty($filter) ? "*" : implode(", ", $filter);
       $query = "SELECT {$filters} FROM {$this->table} WHERE {$field} = :{$field} LIMIT 1";
       $stmt = $this->pdo->prepare($query);
-      $stmt->bindValue(":field", $value);
+      $stmt->bindValue(":{$field}", $value);
       $stmt->execute();
 
       return $stmt->fetch(PDO::FETCH_ASSOC);

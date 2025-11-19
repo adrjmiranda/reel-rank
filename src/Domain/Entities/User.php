@@ -5,7 +5,7 @@ namespace ReelRank\Domain\Entities;
 use ReelRank\Domain\ValueObjects\FirstName;
 use ReelRank\Domain\ValueObjects\LastName;
 use ReelRank\Domain\ValueObjects\Email;
-use ReelRank\Domain\ValueObjects\PasswordHash;
+use ReelRank\Domain\ValueObjects\Password;
 use ReelRank\Domain\ValueObjects\Id;
 use ReelRank\Domain\ValueObjects\Image;
 use ReelRank\Domain\ValueObjects\Bio;
@@ -18,7 +18,7 @@ class User extends Entity
     private FirstName $firstName,
     private LastName $lastName,
     private Email $email,
-    private PasswordHash $passwordHash,
+    private Password $password,
     private ?Id $id = null,
     private ?Image $image = null,
     private ?Bio $bio = null,
@@ -43,9 +43,9 @@ class User extends Entity
     return $this->email;
   }
 
-  public function passwordHash(): PasswordHash
+  public function password(): Password
   {
-    return $this->passwordHash;
+    return $this->password;
   }
 
   public function image(): ?Image
