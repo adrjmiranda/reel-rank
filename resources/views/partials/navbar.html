@@ -36,6 +36,58 @@
 					</button>
 				</form>
 			</li>
+
+			{% if is_logged_in() %}
+
+			<li>
+				<a
+					href="#"
+					class="flex items-center text-sm gap-1 font-semibold group"
+				>
+					<i class="ph ph-plus-circle text-poppy"></i>
+					<span
+						class="group-hover:text-egg duration-200 ease-in-out transition-colors"
+						>Postar</span
+					>
+				</a>
+			</li>
+
+			<li>
+				<a
+					href="#"
+					class="flex items-center text-sm gap-1 font-semibold group"
+				>
+					<i class="ph ph-film-slate text-poppy"></i>
+					<span
+						class="group-hover:text-egg duration-200 ease-in-out transition-colors"
+						>Filmes</span
+					>
+				</a>
+			</li>
+
+			<li>
+				<a
+					href="#"
+					class="flex items-center text-sm gap-1 font-semibold group"
+				>
+					<i class="ph ph-user-square text-poppy"></i>
+					<span
+						class="group-hover:text-egg duration-200 ease-in-out transition-colors"
+						>Perfil</span
+					>
+				</a>
+			</li>
+
+			<li class="w-full">
+				<a
+					href="/logout"
+					class="primary-btn"
+					>Logout</a
+				>
+			</li>
+
+			{% else %}
+
 			<li class="w-full">
 				<a
 					href="/login"
@@ -51,6 +103,7 @@
 					>Inscreva-se</a
 				>
 			</li>
+			{% endif %}
 		</ul>
 	</div>
 </nav>

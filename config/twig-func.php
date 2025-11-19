@@ -1,9 +1,23 @@
 <?php
 
+use ReelRank\Application\Services\UserService;
+use ReelRank\Infrastructure\Data\PersistentInput;
+use ReelRank\Infrastructure\Message\Flash;
+
+$flashMessage = new Flash();
+$persistentInput = new PersistentInput();
+$userService = new UserService();
+
 return [
   "baseUrl" => fn(): string => baseUrl(),
   "is_dev" => fn(): bool => isDev(),
   "asset" => fn(string $filePath): string => baseUrl() . "/{$filePath}",
+  "csrf_token_input" => function (): string {
+    $csrfToken = bin2hex(random_bytes(64));
+    $_SESSION['CSRF_TOKEN'] = $csrfToken;
+
+    return "<input type='hidden' name='csrfToken' value='{$csrfToken}' />";
+  },
   "movie_img" => function (string $imgName): string {
     $baseUrl = baseUrl();
     $imgUrl = "{$baseUrl}/img/default/cape.webp";
@@ -42,4 +56,8 @@ return [
       default => ""
     };
   },
+  "flash_message" => fn(string $key): string => $flashMessage->get($key)[1] ?? '',
+  "persistent_input" => fn(string $field): mixed => $persistentInput->get($field),
+  "session_message" => fn(string $key): array => $flashMessage->get($key),
+  'is_logged_in' => fn(): bool => $userService->isAuthenticated()
 ];

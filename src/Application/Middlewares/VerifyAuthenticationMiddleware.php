@@ -6,20 +6,19 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
+use ReelRank\Application\Services\UserService;
 use ReelRank\Infrastructure\Message\Flash;
 
-class CsrfTokenVerifyMiddleware implements MiddlewareInterface
+class VerifyAuthenticationMiddleware implements MiddlewareInterface
 {
   public function process(Request $request, RequestHandler $handler): Response
   {
-    $data = $request->getParsedBody() ?? [];
-    $csrfTokenInput = $data["csrfToken"] ?? '';
-    $sessionCsrfToken = $_SESSION['CSRF_TOKEN'] ?? '';
-
-    if (empty($csrfTokenInput) || !hash_equals($csrfTokenInput, $sessionCsrfToken)) {
+    $userService = new UserService();
+    $authorized = $userService->isAuthenticated();
+    if (!$authorized) {
       $flash = new Flash();
-      $flash->set('session_message', 'Falha na requisição.');
-      return redirectBack($request);
+      $flash->set('session_message', 'Faça login para poder acessar esta página.');
+      return redirect('/');
     }
 
     $response = $handler->handle($request);

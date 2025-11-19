@@ -2,6 +2,9 @@
 
 <section class="section">
 	<div class="wrapper">
+		{% include "partials/session-message.html" with { key: 'session_message' }
+		%}
+
 		<div class="mb-12 bg-deep p-4 rounded-sm text-center md:text-left">
 			<h1
 				class="normal-case font-normal mb-4 border-l-4 border-solid border-egg w-fit pl-4 text-3xl md:text-4xl leading-8"

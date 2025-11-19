@@ -1,0 +1,6 @@
+{% set error_message = flash_message(name) %}
+<p
+	class="text-red-500 text-xs text-center leading-2 mt-1 {{ error_message == '' ? 'invisible' : 'visible' }}"
+>
+	{{ error_message }}
+</p>

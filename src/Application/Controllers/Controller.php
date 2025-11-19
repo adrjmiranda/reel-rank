@@ -2,16 +2,34 @@
 
 namespace ReelRank\Application\Controllers;
 
+use ReelRank\Infrastructure\Data\PersistentInput;
+use ReelRank\Infrastructure\Data\Sanitize;
+use ReelRank\Infrastructure\Message\Flash;
 use ReelRank\Infrastructure\Template\Engine;
+use ReelRank\Infrastructure\Validation\Validation;
 use Twig\Environment;
+
 
 abstract class Controller
 {
   private Environment $twig;
+  protected Validation $validation;
+  protected Sanitize $sanitize;
+  protected Flash $flash;
+  protected PersistentInput $persistentInput;
 
-  public function __construct(Engine $engine)
-  {
+  public function __construct(
+    Engine $engine,
+    Validation $validation,
+    Sanitize $sanitize,
+    Flash $flash,
+    PersistentInput $persistentInput
+  ) {
     $this->twig = $engine::get();
+    $this->validation = $validation;
+    $this->sanitize = $sanitize;
+    $this->flash = $flash;
+    $this->persistentInput = $persistentInput;
   }
 
   protected function view(string $template, array $data = []): string
@@ -20,4 +38,6 @@ abstract class Controller
     $data = array_merge($templateConfig, $data);
     return $this->twig->render(str_replace(".", "/", $template) . ".html", $data);
   }
+
+
 }

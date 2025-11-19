@@ -38,6 +38,8 @@
 					method="post"
 					class="flex flex-col gap-2"
 				>
+					{{ csrf_token_input()|raw }}
+
 					<div>
 						<div class="form-field">
 							<input

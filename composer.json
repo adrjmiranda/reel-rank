@@ -11,7 +11,8 @@
 			"helpers/env.php",
 			"helpers/path.php",
 			"helpers/url.php",
-			"helpers/routes.php"
+			"helpers/routes.php",
+			"helpers/http.php"
 		]
 	},
 	"authors": [
