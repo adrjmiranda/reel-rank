@@ -19,7 +19,12 @@ class UserService
   public function login(User $user): void
   {
     $this->sessionService->set(self::SESSION_AUTH_KEY, [
-      'id' => $user->id()->value()
+      'id' => $user->id()->value(),
+      'firstName' => $user->firstName()->value(),
+      'lastName' => $user->lastName()->value(),
+      'email' => $user->email()->value(),
+      'bio' => $user->bio() === null ? null : $user->bio()->value(),
+      'image' => $user->image() === null ? null : $user->image()->value(),
     ]);
 
     $persistentInput = new PersistentInput();
@@ -35,5 +40,10 @@ class UserService
   {
     $auth = $this->sessionService->get(self::SESSION_AUTH_KEY);
     return $auth !== null && isset($auth['id']);
+  }
+
+  public function user(): ?array
+  {
+    return $this->sessionService->get(self::SESSION_AUTH_KEY);
   }
 }

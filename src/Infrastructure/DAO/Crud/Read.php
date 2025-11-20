@@ -71,4 +71,34 @@ trait Read
       throw $th;
     }
   }
+
+  protected function findAllByField(string $field, mixed $value, array $filter = []): ?array
+  {
+    try {
+      $filters = empty($filter) ? "*" : implode(", ", $filter);
+
+      $query = "SELECT {$filters} FROM {$this->table} WHERE {$field} = :{$field}";
+      $stmt = $this->pdo->prepare($query);
+      $stmt->bindValue(":{$field}", $value);
+      $stmt->execute();
+
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  public function count(string $field, mixed $value, string $column)
+  {
+    try {
+      $query = "SELECT COUNT({$column}) FROM {$this->table} WHERE {$field} = :{$field}";
+      $stmt = $this->pdo->prepare($query);
+      $stmt->bindValue(":{$field}", $value);
+      $stmt->execute();
+
+      return (int) $stmt->fetchColumn();
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
 }

@@ -2,6 +2,7 @@
 
 namespace ReelRank\Infrastructure\DAO\Persistence;
 
+use PDO;
 use ReelRank\Domain\Collection\MovieCollection;
 use ReelRank\Domain\Entities\Movie;
 use ReelRank\Infrastructure\DAO\DAO;
@@ -42,5 +43,27 @@ final class MovieDAO extends DAO implements MovieDAOInterface
   {
     $data = $this->findAll($filter);
     return $this->hydrateList($data, Movie::class, MovieCollection::class);
+  }
+
+  public function allByField(string $field, mixed $value, array $filter = []): MovieCollection
+  {
+    $data = $this->findAllByField($field, $value, $filter);
+    return $this->hydrateList($data, Movie::class, MovieCollection::class);
+  }
+
+  public function rating(int $id): float
+  {
+    try {
+      $query = "SELECT ROUND(AVG(rating), 1) AS averageRating FROM reviews WHERE movieId = :movieId";
+      $stmt = $this->pdo->prepare($query);
+      $stmt->bindValue(':movieId', $id);
+      $stmt->execute();
+
+      $result = $stmt->fetchColumn();
+
+      return $result !== null ? (float) $result : 0.0;
+    } catch (\Throwable $th) {
+      throw $th;
+    }
   }
 }

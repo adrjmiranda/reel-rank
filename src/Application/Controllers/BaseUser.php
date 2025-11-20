@@ -4,6 +4,9 @@ namespace ReelRank\Application\Controllers;
 
 use ReelRank\Application\Services\SessionService;
 use ReelRank\Application\Services\UserService;
+use ReelRank\Infrastructure\DAO\Persistence\CategoryDAO;
+use ReelRank\Infrastructure\DAO\Persistence\MovieDAO;
+use ReelRank\Infrastructure\DAO\Persistence\ReviewDAO;
 use ReelRank\Infrastructure\DAO\Persistence\UserDAO;
 
 use ReelRank\Infrastructure\Data\PersistentInput;
@@ -11,17 +14,22 @@ use ReelRank\Infrastructure\Data\Sanitize;
 use ReelRank\Infrastructure\Message\Flash;
 use ReelRank\Infrastructure\Template\Engine;
 use ReelRank\Infrastructure\Validation\Validation;
-use Twig\Environment;
 
 abstract class BaseUser extends Controller
 {
-  protected UserDAO $userDAO;
   protected UserService $userService;
+  protected UserDAO $userDAO;
+  protected MovieDAO $movieDAO;
+  protected CategoryDAO $categoryDAO;
+  protected ReviewDAO $reviewDAO;
 
-  public function __construct(Engine $engine, Validation $validation, Sanitize $sanitize, SessionService $sessionService, Flash $flash, PersistentInput $persistentInput, UserDAO $userDAO, UserService $userService)
+  public function __construct(Engine $engine, Validation $validation, Sanitize $sanitize, SessionService $sessionService, Flash $flash, PersistentInput $persistentInput, UserService $userService, UserDAO $userDAO, MovieDAO $movieDAO, CategoryDAO $categoryDAO, ReviewDAO $reviewDAO)
   {
-    $this->userDAO = $userDAO;
     $this->userService = $userService;
+    $this->userDAO = $userDAO;
+    $this->movieDAO = $movieDAO;
+    $this->categoryDAO = $categoryDAO;
+    $this->reviewDAO = $reviewDAO;
     parent::__construct($engine, $validation, $sanitize, $flash, $persistentInput, $sessionService);
   }
 }

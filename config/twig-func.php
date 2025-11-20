@@ -28,7 +28,7 @@ return [
 
     return $imgUrl;
   },
-  "user_image" => function (string $imgName): string {
+  "user_image" => function (?string $imgName): string {
     $baseUrl = baseUrl();
     $imgUrl = "{$baseUrl}/img/default/avatar.webp";
 

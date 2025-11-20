@@ -1,34 +1,42 @@
 {% extends 'layout/base.html' %}{% block container %}
 
-<section class="section pb-42 md:pb-16">
+<section class="section pb-52 sm:pb-42 md:pb-16">
 	<div class="wrapper">
 		<div class="grid md:grid-cols-2 gap-6">
-			<div>
-				<div class="flex flex-col items-start gap-4 mb-4">
+			<div class="bg-black p-3 rounded-sm ring-1 ring-gray-800 h-fit">
+				<div class="flex flex-col lg:flex-row items-start gap-4 mb-4">
 					<img
-						src="{{ user_image('') }}"
+						src="{{ user_image(user.image) }}"
 						alt="User name"
-						class="rounded-sm h-96 w-full object-cover object-center ring-3 ring-poppy cursor-pointer"
+						class="rounded-full h-42 w-42 sm:h-48 sm:w-48 object-cover object-center ring-3 ring-poppy cursor-pointer mx-auto lg:mx-0"
 					/>
 					<div class="w-full flex flex-col gap-4">
 						<div
 							class="p-2 bg-deep rounded-sm ring-1 ring-gray-800 shadow-xl shadow-gray-900/80"
 						>
-							<h5 class="mb-2 bg-dark p-2 rounded-sm">Nome:</h5>
-							<strong
-								class="font-normal leading-7 italic rounded-sm bg-dark/45 p-2 block"
+							<h6
+								class="text-base mb-2 bg-dark px-2 font-normal py-1 rounded-sm"
 							>
-								John
+								Nome:
+							</h6>
+							<strong
+								class="font-normal leading-7 italic rounded-sm bg-dark/45 px-2 py-1 block line-clamp-1"
+							>
+								{{ user.firstName }}
 							</strong>
 						</div>
 						<div
 							class="p-2 bg-deep rounded-sm ring-1 ring-gray-800 shadow-xl shadow-gray-900/80"
 						>
-							<h5 class="mb-2 bg-dark p-2 rounded-sm">Sobrenome:</h5>
-							<strong
-								class="font-normal leading-7 italic rounded-sm bg-dark/45 p-2 block"
+							<h6
+								class="text-base mb-2 bg-dark px-2 font-normal py-1 rounded-sm"
 							>
-								Doe
+								Sobrenome:
+							</h6>
+							<strong
+								class="font-normal leading-7 italic rounded-sm bg-dark/45 px-2 py-1 block line-clamp-1"
+							>
+								{{ user.lastName }}
 							</strong>
 						</div>
 					</div>
@@ -37,7 +45,9 @@
 				<div
 					class="p-2 bg-deep rounded-sm ring-1 ring-gray-800 shadow-xl shadow-gray-900/80 mb-4"
 				>
-					<h5 class="mb-2 bg-dark p-2 rounded-sm">Bio:</h5>
+					<h6 class="text-base mb-2 bg-dark px-2 font-normal py-1 rounded-sm">
+						Bio:
+					</h6>
 					<div
 						x-data="{
               hidden: true,
@@ -45,8 +55,18 @@
                 this.hidden = !this.hidden
               }
             }"
-						class="rounded-sm bg-dark/45 p-2"
+						class="rounded-sm bg-dark/45 px-2 py-1"
 					>
+						{% if user.bio is null %}
+						<p class="opacity-45 text-sm">
+							Você não preencheu sua bio.
+							<a
+								href="/perfil/edit"
+								class="font-medium text-egg transition-colors duration-200 ease-in-out hover:text-poppy"
+								>Preencher agora</a
+							>.
+						</p>
+						{% else %}
 						<p
 							class="font-normal leading-7 italic"
 							x-bind:class="hidden ? 'line-clamp-3' : 'line-clamp-none'"
@@ -62,17 +82,20 @@
 							@click="toggle()"
 							x-text="hidden ? 'mais' : 'menos'"
 						></button>
+						{% endif %}
 					</div>
 				</div>
 
 				<div
 					class="p-2 bg-deep rounded-sm ring-1 ring-gray-800 shadow-xl shadow-gray-900/80"
 				>
-					<h5 class="mb-2 bg-dark p-2 rounded-sm">E-mail:</h5>
+					<h6 class="text-base mb-2 bg-dark px-2 font-normal py-1 rounded-sm">
+						E-mail:
+					</h6>
 					<strong
-						class="font-normal leading-7 italic rounded-sm bg-dark/45 p-2 block"
+						class="font-normal leading-7 italic rounded-sm bg-dark/45 px-2 py-1 block"
 					>
-						example@email.com
+						{{ user.email }}
 					</strong>
 				</div>
 
@@ -85,26 +108,151 @@
 				</div>
 			</div>
 
-			<div>
-				<div
-					class="bg-deep p-2 rounded-sm text-center md:text-left ring-1 ring-gray-800 shadow-xl shadow-gray-900/80 mb-4"
-				>
-					<h3
-						class="normal-case font-semibold border-l-4 border-solid border-egg w-fit pl-4 text-3xl leading-8"
-					>
-						Críticas Postadas
-					</h3>
-				</div>
+			<div class="mt-8 sm:mt-0 bg-black p-3 rounded-sm h-fit">
+				<h3 class="bg-dark px-2 py-1 text-lg font-semibold rounded-sm mb-2">
+					Suas estatísticas
+				</h3>
 
-				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-4">
-					{% include "partials/user-movie-card.html" %}
-					<!---->
-					{% include "partials/user-movie-card.html" %}
-					<!---->
-					{% include "partials/user-movie-card.html" %}
-					<!---->
-				</div>
-				{% include "partials/pagination.html" %}
+				<ul class="flex flex-col gap-4">
+					<li
+						class="flex justify-between items-center bg-deep rounded-sm py-1 px-2 text-sm"
+					>
+						<span
+							class="bg-egg px-1 py-[0.5px] rounded-sm text-dark font-medium"
+							>Críticas postadas:</span
+						>
+						<hr class="h-px flex-1 bg-gray-400 mx-2 opacity-35" />
+						<span>{{ reviewPosted }}</span>
+					</li>
+
+					<li
+						class="flex justify-between items-center bg-deep rounded-sm py-1 px-2 text-sm"
+					>
+						<span
+							class="bg-egg px-1 py-[0.5px] rounded-sm text-dark font-medium"
+							>Comentários feitos:</span
+						>
+						<hr class="h-px flex-1 bg-gray-400 mx-2 opacity-35" />
+						<span>{{ commentsMade }}</span>
+					</li>
+
+					<li
+						class="flex justify-between items-center bg-deep rounded-sm py-1 px-2 text-sm"
+					>
+						<span
+							class="bg-egg px-1 py-[0.5px] rounded-sm text-dark font-medium"
+							>Reviews feitas:</span
+						>
+						<hr class="h-px flex-1 bg-gray-400 mx-2 opacity-35" />
+						<span>{{ reviewsWritten }}</span>
+					</li>
+
+					<li
+						class="flex justify-between items-center bg-deep rounded-sm py-1 px-2 text-sm"
+					>
+						<span
+							class="bg-egg px-1 py-[0.5px] rounded-sm text-dark font-medium"
+							>Comentários nos seus posts:</span
+						>
+						<hr class="h-px flex-1 bg-gray-400 mx-2 opacity-35" />
+						<span>{{ commentsOnYourPosts }}</span>
+					</li>
+
+					<li
+						class="flex flex-col gap-1 justify-between items-start bg-deep rounded-sm py-1 px-2"
+					>
+						<h5
+							class="text-base font-normal bg-dark px-2 py-1 rounded-sm w-full mb-2"
+						>
+							Post com maior nota
+						</h5>
+
+						{% if reviewPosted == 0 %}
+
+						<p class="text-sm px-2 py-1">
+							Você ainda não postou nada.
+							<a
+								href="/postar/filme"
+								class="text-egg transition-colors duration-200 ease-in-out hover:text-poppy"
+								>Criar agora</a
+							>.
+						</p>
+
+						{% else %}
+
+						<p
+							class="flex justify-between w-full items-center flex-nowrap text-sm"
+						>
+							<span
+								class="bg-poppy px-1 py-[0.5px] rounded-sm text-dark font-medium"
+								>Título:</span
+							><span
+								class="h-px w-full bg-gray-400 mx-2 flex-1 opacity-35"
+							></span
+							><span class="max-w-1/2 line-clamp-1">Movie title</span>
+						</p>
+						<p
+							class="flex justify-between w-full items-center flex-nowrap text-sm"
+						>
+							<span
+								class="bg-poppy px-1 py-[0.5px] rounded-sm text-dark font-medium"
+								>Nota:</span
+							><span
+								class="h-px w-full bg-gray-400 mx-2 flex-1 opacity-35"
+							></span
+							><span>0</span>
+						</p>
+
+						{% endif %}
+					</li>
+
+					<li
+						class="flex flex-col gap-1 justify-between items-start bg-deep rounded-sm py-1 px-2"
+					>
+						<h5
+							class="text-base font-normal bg-dark px-2 py-1 rounded-sm w-full mb-2"
+						>
+							Post com menor nota
+						</h5>
+
+						{% if reviewPosted == 0 %}
+
+						<p class="text-sm px-2 py-1">
+							Você ainda não postou nada.
+							<a
+								href="/postar/filme"
+								class="text-egg transition-colors duration-200 ease-in-out hover:text-poppy"
+								>Criar agora</a
+							>.
+						</p>
+
+						{% else %}
+
+						<p
+							class="flex justify-between w-full items-center flex-nowrap text-sm"
+						>
+							<span
+								class="bg-poppy px-1 py-[0.5px] rounded-sm text-dark font-medium"
+								>Título:</span
+							><span
+								class="h-px w-full bg-gray-400 mx-2 flex-1 opacity-35"
+							></span
+							><span class="max-w-1/2 line-clamp-1">Movie title</span>
+						</p>
+						<p
+							class="flex justify-between w-full items-center flex-nowrap text-sm"
+						>
+							<span
+								class="bg-poppy px-1 py-[0.5px] rounded-sm text-dark font-medium"
+								>Nota:</span
+							><span
+								class="h-px w-full bg-gray-400 mx-2 flex-1 opacity-35"
+							></span
+							><span>0</span>
+						</p>
+					</li>
+					{% endif %}
+				</ul>
 			</div>
 		</div>
 	</div>
