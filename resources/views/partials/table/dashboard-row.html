@@ -1,9 +1,21 @@
 <tr class="flex items-center justify-between bg-black p-2 rounded-sm">
-	<td class="flex-1 sm:inline-block hidden">1</td>
-	<td class="flex-1">Super Nova</td>
-	<td class="flex-1 min-[364px]:inline-block hidden">17/11/2026</td>
-	<td class="flex-1 md:inline-block hidden">120min</td>
-	<td class="flex-1 sm:inline-block hidden">Action</td>
+	<td class="flex-1 sm:inline-block hidden">{{ loop.index }}</td>
+	<td class="flex-1">{{ movie.title }}</td>
+	<td class="flex-1 min-[364px]:inline-block hidden">
+		{{ movie.createdAt|date('d/m/Y') }}
+	</td>
+	<td class="flex-1 md:inline-block hidden">{{ movie.duration }} min</td>
+	<td class="flex-1 sm:inline-block hidden">
+		{% for category in categories %}
+		<!-- -->
+		{% if category.id.equals(movie.categoryId) %}
+		<!-- -->
+		{{ category.name|value }}
+		<!-- -->
+		{% endif %}
+		<!-- -->
+		{% endfor %}
+	</td>
 	<td class="flex-1 flex gap-2 justify-center items-center">
 		<button
 			type="button"

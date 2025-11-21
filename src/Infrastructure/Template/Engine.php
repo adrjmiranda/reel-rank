@@ -4,6 +4,7 @@ namespace ReelRank\Infrastructure\Template;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 final class Engine
@@ -25,6 +26,11 @@ final class Engine
       $functions = config("twig-func");
       foreach ($functions as $name => $handler) {
         self::$twig->addFunction(new TwigFunction($name, $handler));
+      }
+
+      $filters = config("twig-filter");
+      foreach ($filters as $name => $handler) {
+        self::$twig->addFilter(new TwigFilter($name, $handler));
       }
     }
 

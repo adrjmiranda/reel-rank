@@ -5,6 +5,8 @@ namespace ReelRank\Infrastructure\DAO\Data;
 use DateTimeImmutable;
 use PDO;
 use PDOStatement;
+use ReelRank\Application\Services\SessionService;
+use ReelRank\Application\Services\UserService;
 use ReflectionClass;
 use ReflectionObject;
 
@@ -68,13 +70,15 @@ trait Handler
   {
     $reflection = new ReflectionClass($class);
     $properties = $this->properties($class);
+
     $instance = $reflection->newInstanceArgs(
       array_map(function ($property) use ($row) {
         $typeName = ucfirst($property);
         $typeNamespace = "ReelRank\\Domain\\ValueObjects\\{$typeName}";
 
         $value = match ($property) {
-          "createdAt", "updatedAt" => DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $row[$property]),
+          "createdAt" => isset($row['createdAt']) ? DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $row[$property]) : null,
+          "updatedAt" => isset($row['updatedAt']) ? DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $row[$property]) : null,
           default => $row[$property] ?? null,
         };
 

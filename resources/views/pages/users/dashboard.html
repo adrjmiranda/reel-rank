@@ -24,7 +24,9 @@
           {% include "partials/table/dashboard-head.html" %}
 				</thead>
 				<tbody class="flex flex-col gap-1">
-          {% include "partials/table/dashboard-row.html" %}
+					{% for movie in movies %}
+          {% include "partials/table/dashboard-row.html" with { categories: categories, movie: movie } %}
+					{% endfor %}
         </tbody>
 			</table>
       {% include "partials/pagination.html" %}

@@ -140,7 +140,13 @@ class UserController extends Controller
 
   public function dashboard(Request $request, Response $response): Response
   {
-    $response->getBody()->write($this->view("pages.users.dashboard"));
+    $categories = $this->categoryDAO->all();
+    $movies = $this->movieDAO->allByField('userId', $this->userService->user()['id'], ['id', 'title', 'userId', 'createdAt', 'duration', 'categoryId', 'createdAt']);
+
+    $response->getBody()->write($this->view("pages.users.dashboard", [
+      'categories' => $categories,
+      'movies' => $movies
+    ]));
     return $response;
   }
 }
