@@ -9,6 +9,7 @@ use ReelRank\Domain\Entities\Movie;
 use ReelRank\Domain\ValueObjects\CategoryId;
 use ReelRank\Domain\ValueObjects\Description;
 use ReelRank\Domain\ValueObjects\Duration;
+use ReelRank\Domain\ValueObjects\Id;
 use ReelRank\Domain\ValueObjects\Image;
 use ReelRank\Domain\ValueObjects\Title;
 use ReelRank\Domain\ValueObjects\TrailerUrl;
@@ -124,8 +125,77 @@ class MovieController extends Controller
 
   public function update(Request $request, Response $response): Response
   {
-    $response->getBody()->write($this->view("pages.movies.edit"));
+    $data = $request->getParsedBody() ?? [];
 
-    return $response;
+    $id = (int) ($data['id'] ?? '');
+    $searchedMovie = $this->movieDAO->findOne($id);
+
+    if (!$searchedMovie) {
+      $this->flash->set('session_message', 'Filme não encontrado. Tente novamente.');
+      return redirect('/dashboard');
+    }
+
+    $owner = $this->userDAO->findOne($this->userService->user()['id']);
+    if ($searchedMovie->userId()->value() !== $owner->id()->value()) {
+      $this->flash->set('session_message', 'Não tem permissão para atualizar esse post. Tente novamente com outro post.');
+      return redirect('/dashboard');
+    }
+
+    $sanitizeData = [
+      "title" => 'trim|extspaces',
+      "categoryId" => 'trim',
+    ];
+    if (!empty($data['duration']))
+      $sanitizeData['duration'] = 'trim|extspaces';
+    if (!empty($data['trailerUrl']))
+      $sanitizeData['trailerUrl'] = 'trim';
+    if (!empty($data['description']))
+      $sanitizeData['description'] = 'trim|extspaces';
+    $data = $this->sanitize->sanitize($request, $sanitizeData);
+
+    $ruleList = [
+      "title" => 'required|alphabetical',
+      "categoryId" => 'required|numeric|validcategory',
+    ];
+    if (!empty($data['duration']))
+      $ruleList['duration'] = 'numeric';
+    if (!empty($data['trailerUrl']))
+      $ruleList['trailerUrl'] = 'max:255';
+    if (!empty($data['description']))
+      $ruleList['description'] = 'max:500';
+    $data = $this->validation->validate($data, $ruleList);
+    if ($data === null)
+      return redirectBack($request);
+
+    $movieToUpdate = new Movie(
+      new Title($data['title']),
+      new CategoryId($data['categoryId']),
+      new UserId($this->userService->user()['id']),
+      isset($data['duration']) ? new Duration($data['duration']) : null,
+      isset($data['trailerUrl']) ? new TrailerUrl($data['trailerUrl']) : null,
+      isset($data['description']) ? new Description($data['description']) : null,
+    );
+
+    $uploadedFiles = $request->getUploadedFiles();
+    $uploadedImage = $uploadedFiles['image'] ?? null;
+
+    if (!empty($uploadedImage->getClientFilename())) {
+      $image = $this->imageService->save($request, $movieToUpdate);
+      if ($image === null)
+        return redirectBack($request);
+
+      $data['image'] = $image;
+    }
+
+    $data['id'] = $id;
+    $updated = $this->movieDAO->updateData($id, $data);
+
+    if (!$updated) {
+      $this->flash->set('session_message', 'Falha ao tentar atualizar filme. Tente novamente.');
+      return redirectBack($request);
+    }
+
+    $this->flash->set('session_message', 'Filme atualizado com sucesso!', Flash::SUCCESS);
+    return redirect("/filme/{$id}");
   }
 }

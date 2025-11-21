@@ -10,9 +10,9 @@ use ReelRank\Domain\ValueObjects\UpdatedAt;
 abstract class Entity
 {
   public function __construct(
-    private ?Id $id = null,
-    private ?CreatedAt $createdAt = null,
-    private ?UpdatedAt $updatedAt = null
+    protected ?Id $id = null,
+    protected ?CreatedAt $createdAt = null,
+    protected ?UpdatedAt $updatedAt = null
   ) {
     $this->createdAt ??= new CreatedAt(new DateTimeImmutable());
     $this->updatedAt ??= new UpdatedAt(new DateTimeImmutable());

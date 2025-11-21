@@ -23,11 +23,16 @@ class Movie extends Entity
     private ?TrailerUrl $trailerUrl = null,
     private ?Description $description = null,
     private ?Image $image = null,
-    private ?Id $id = null,
-    private ?CreatedAt $createdAt = null,
-    private ?UpdatedAt $updatedAt = null
+    protected ?Id $id = null,
+    protected ?CreatedAt $createdAt = null,
+    protected ?UpdatedAt $updatedAt = null
   ) {
     parent::__construct($id, $createdAt, $updatedAt);
+  }
+
+  public function setId(Id $id): void
+  {
+    $this->id = $id;
   }
 
   public function title(): Title

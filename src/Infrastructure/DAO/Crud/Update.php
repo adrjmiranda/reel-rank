@@ -11,10 +11,14 @@ trait Update
       unset($data["createdAt"]);
       $columns = array_keys($data);
 
-      $query = "UPDATE {$this->table} SET " . implode(", ", array_map(fn($column) => "{$column} = :{$column}", $columns)) . " WHERE id = :id";
+      $dataFields = $data;
+      unset($dataFields['id']);
+      $columnFields = array_keys($dataFields);
+
+      $query = "UPDATE {$this->table} SET " . implode(", ", array_map(fn($column) => "{$column} = :{$column}", $columnFields)) . " WHERE id = :id";
+
       $stmt = $this->pdo->prepare($query);
       $this->bindData($stmt, $entity, $columns);
-
       return $stmt->execute();
     } catch (\Throwable $th) {
       throw $th;
