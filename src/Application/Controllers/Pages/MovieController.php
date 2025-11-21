@@ -13,6 +13,7 @@ use ReelRank\Domain\ValueObjects\Image;
 use ReelRank\Domain\ValueObjects\Title;
 use ReelRank\Domain\ValueObjects\TrailerUrl;
 use ReelRank\Domain\ValueObjects\UserId;
+use ReelRank\Infrastructure\Message\Flash;
 
 class MovieController extends Controller
 {
@@ -22,7 +23,7 @@ class MovieController extends Controller
     $movie = $this->movieDAO->findOne($id);
 
     if (!$movie) {
-      $this->flash->set('session_message', 'O filme não existe.');
+      $this->flash->set('session_message', 'Filme não encontrado.', Flash::WARNING);
       return redirect('/');
     }
 
@@ -101,9 +102,22 @@ class MovieController extends Controller
     return redirect("/filme/{$createdMovie->id()->value()}");
   }
 
-  public function edit(Request $request, Response $response): Response
+  public function edit(Request $request, Response $response, array $params): Response
   {
-    $response->getBody()->write($this->view("pages.movies.edit"));
+    $id = (int) ($params['id'] ?? '');
+    $movie = $this->movieDAO->findOne($id);
+
+    if (!$movie) {
+      $this->flash->set('session_message', 'Filme não encontrado.', Flash::WARNING);
+      return redirectBack($request);
+    }
+
+    $categories = $this->categoryDAO->all();
+
+    $response->getBody()->write($this->view("pages.movies.edit", [
+      'movie' => $movie,
+      'categories' => $categories
+    ]));
 
     return $response;
   }

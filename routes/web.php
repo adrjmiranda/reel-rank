@@ -38,7 +38,7 @@ $app->get('/usuario/{id}', [UserController::class, 'show']);
 $app->group('/', function (RouteCollectorProxy $group) {
   // Movies
   $group->get('postar/filme', [MovieController::class, 'create']);
-  $group->get('editar/filme', [MovieController::class, 'edit']);
+  $group->get('editar/filme/{id}', [MovieController::class, 'edit']);
 
   // Users
   $group->get('perfil', [UserController::class, 'profile']);

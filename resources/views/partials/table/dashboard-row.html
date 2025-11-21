@@ -17,22 +17,22 @@
 		{% endfor %}
 	</td>
 	<td class="flex-1 flex gap-2 justify-center items-center">
-		<button
-			type="button"
+		<a
+			href="/filme/{{ movie.id }}"
 			class="group"
 		>
 			<i
 				class="ph ph-projector-screen-chart text-yellow-500 group-hover:scale-105 transition-all duration-200 ease-in-out"
 			></i>
-		</button>
-		<button
-			type="button"
+		</a>
+		<a
+			href="/editar/filme/{{ movie.id }}"
 			class="group"
 		>
 			<i
 				class="ph ph-file-lock text-blue-500 group-hover:scale-105 transition-all duration-200 ease-in-out"
 			></i>
-		</button>
+		</a>
 		<button
 			type="button"
 			class="group"
