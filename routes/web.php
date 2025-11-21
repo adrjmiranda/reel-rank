@@ -51,7 +51,7 @@ $app->group('/', function (RouteCollectorProxy $group) {
     $group->post('editar/filme', [MovieController::class, 'edit']);
 
     // Users
-    $group->post('perfil/edit', [UserController::class, 'edit']);
+    $group->post('perfil/edit', [UserController::class, 'update']);
   })->addMiddleware(new CsrfTokenVerifyMiddleware());
 })->addMiddleware(new VerifyAuthenticationMiddleware());
 

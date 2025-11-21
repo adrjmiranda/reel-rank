@@ -56,11 +56,11 @@ class Validation
         $validateResult = $rule === 'confirmpassword' ? $this->$rule($field, $value, [$data['password'] ?? '']) : $this->$rule($field, $value, $params);
 
         $this->results[$field] = $validateResult;
-        if ($validateResult === null)
+        if ($validateResult === null) {
           break;
+        }
       }
     }
-
-    return \in_array(null, array_values($this->results)) ? null : $this->results;
+    return \in_array(null, array_values($this->results), true) ? null : $this->results;
   }
 }

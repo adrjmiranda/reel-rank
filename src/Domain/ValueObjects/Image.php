@@ -2,14 +2,15 @@
 
 namespace ReelRank\Domain\ValueObjects;
 
+use ReelRank\Domain\Exception\EmptyImageNameException;
+
 final class Image
 {
-  private string $name;
-
   public function __construct(
-    private string $extension
+    private string $name
   ) {
-    $this->name = bin2hex(random_bytes(64)) . ".{$extension}";
+    if (empty($name))
+      throw new EmptyImageNameException();
   }
 
   public function value(): string

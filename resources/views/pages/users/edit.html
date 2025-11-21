@@ -4,25 +4,30 @@
 	<div class="wrapper">
 		<div>
 			<div
-				class="bg-dark rounded-sm px-4 py-6 md:p-6 shadow-xl shadow-white/5 ring-1 ring-gray-300 h-fit"
+				class="bg-dark rounded-sm p-4 shadow-xl shadow-white/5 ring-1 ring-gray-700 h-fit"
 			>
 				<div class="mb-6 text-center">
 					<h1 class="mb-2">Editar Perfil</h1>
 				</div>
 
 				<form
-					action="/register"
+					action="/perfil/edit"
 					method="post"
+					enctype="multipart/form-data"
 					class="grid grid-cols-1 md:grid-cols-2 gap-2"
 				>
 					{{ csrf_token_input()|raw }}
 
-					<div class="flex flex-col gap-4 col-span-2 md:col-span-1">
+					<div
+						x-data="imagePreview"
+						class="flex flex-col gap-4 col-span-2 md:col-span-1"
+					>
 						<div class="p-4 bg-deep rounded-sm">
 							<img
-								src="{{ user_image('') }}"
+								:src="previewUrl || '{{ user_image(user.image) }}'"
 								alt="User name"
 								class="rounded-sm h-96 w-full object-cover object-center ring-3 ring-poppy cursor-pointer"
+								id="input-preview"
 							/>
 						</div>
 
@@ -34,7 +39,7 @@
 									id="image"
 									class="form-field-input text-sm pt-6"
 									placeholder=""
-									required
+									@change="updatePreview($event)"
 								/>
 								<label
 									for="image"
@@ -42,22 +47,22 @@
 									>Imagem do perfil:</label
 								>
 							</div>
-							<p class="text-red-500 text-xs text-center leading-2 invisible">
-								Message error
-							</p>
+							{% include "partials/form-input-error.html" with { name: 'image' }
+							%}
 						</div>
 					</div>
 
 					<div class="flex gap-2 flex-wrap col-span-2 md:col-span-1">
 						<div class="flex-1 sm:flex-[calc(50%---spacing(2))]">
 							<div class="form-field">
+								{% set input_value = persistent_input('firstName') %}
 								<input
 									type="text"
 									name="firstName"
 									id="firstName"
 									class="form-field-input"
 									placeholder=""
-									required
+									value="{{ input_value is null ? user.firstName : input_value }}"
 								/>
 								<label
 									for="firstName"
@@ -65,20 +70,20 @@
 									>Nome:</label
 								>
 							</div>
-							<p class="text-red-500 text-xs text-center leading-2 invisible">
-								Message error
-							</p>
+							{% include "partials/form-input-error.html" with { name:
+							'firstName' } %}
 						</div>
 
 						<div class="flex-1 sm:flex-[calc(50%---spacing(2))]">
 							<div class="form-field">
+								{% set input_value = persistent_input('lastName') %}
 								<input
 									type="text"
 									name="lastName"
 									id="lastName"
 									class="form-field-input"
 									placeholder=""
-									required
+									value="{{ input_value is null ? user.lastName : input_value }}"
 								/>
 								<label
 									for="lastName"
@@ -86,9 +91,8 @@
 									>Sobrenome:</label
 								>
 							</div>
-							<p class="text-red-500 text-xs text-center leading-2 invisible">
-								Message error
-							</p>
+							{% include "partials/form-input-error.html" with { name:
+							'lastName' } %}
 						</div>
 
 						<div class="w-full">
@@ -97,9 +101,9 @@
 									type="email"
 									name="email"
 									id="email"
-									class="form-field-input"
+									class="form-field-input italic text-gray-600"
 									placeholder=""
-									required
+									disabled
 								/>
 								<label
 									for="email"
@@ -107,20 +111,18 @@
 									>E-mail:</label
 								>
 							</div>
-							<p class="text-red-500 text-xs text-center leading-2 invisible">
-								Message error
-							</p>
 						</div>
 
 						<div class="flex-1 sm:flex-[calc(50%---spacing(2))]">
 							<div class="form-field">
+								{% set input_value = persistent_input('password') %}
 								<input
 									type="password"
 									name="password"
 									id="password"
 									class="form-field-input"
+									value="{{ input_value is null ? '' : input_value }}"
 									placeholder=""
-									required
 								/>
 								<label
 									for="password"
@@ -128,20 +130,20 @@
 									>Senha:</label
 								>
 							</div>
-							<p class="text-red-500 text-xs text-center leading-2 invisible">
-								Message error
-							</p>
+							{% include "partials/form-input-error.html" with { name:
+							'password' } %}
 						</div>
 
 						<div class="flex-1 sm:flex-[calc(50%---spacing(2))]">
 							<div class="form-field">
+								{% set input_value = persistent_input('passwordConfirmation') %}
 								<input
 									type="password"
 									name="passwordConfirmation"
 									id="passwordConfirmation"
 									class="form-field-input"
 									placeholder=""
-									required
+									value="{{ input_value is null ? '' : input_value }}"
 								/>
 								<label
 									for="passwordConfirmation"
@@ -149,28 +151,29 @@
 									>Confirmar senha:</label
 								>
 							</div>
-							<p class="text-red-500 text-xs text-center leading-2 invisible">
-								Message error
-							</p>
+							{% include "partials/form-input-error.html" with { name:
+							'passwordConfirmation' } %}
 						</div>
 
 						<div class="w-full">
 							<div class="form-field h-64">
+								{% set input_value = persistent_input('bio') %}
 								<textarea
 									name="bio"
 									id="bio"
 									class="form-field-textarea h-full"
 									placeholder=""
-								></textarea>
+								>
+{{ input_value is null ? user.bio : input_value }}</textarea
+								>
 								<label
 									for="passwordConfirmation"
 									class="form-field-label"
 									>Sobre você:</label
 								>
 							</div>
-							<p class="text-red-500 text-xs text-center leading-2 invisible">
-								Message error
-							</p>
+							{% include "partials/form-input-error.html" with { name: 'bio' }
+							%}
 						</div>
 					</div>
 

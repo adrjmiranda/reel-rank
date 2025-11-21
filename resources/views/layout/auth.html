@@ -47,6 +47,9 @@
 	<body class="relative z-0">
 		{% include 'partials/navbar.html' %}
 		<main class="content bg-center bg-cover" style="background-image: url('{{ asset("img/banner/auth.webp") }}');">
+			{% include "partials/session-message.html" with { key: 'session_message'
+			}%}
+			<!---->
 			{% block container %}
 			<!---->
 			{% endblock container %}

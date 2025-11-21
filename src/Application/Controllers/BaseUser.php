@@ -2,6 +2,7 @@
 
 namespace ReelRank\Application\Controllers;
 
+use ReelRank\Application\Services\ImageService;
 use ReelRank\Application\Services\SessionService;
 use ReelRank\Application\Services\UserService;
 use ReelRank\Infrastructure\DAO\Persistence\CategoryDAO;
@@ -18,14 +19,28 @@ use ReelRank\Infrastructure\Validation\Validation;
 abstract class BaseUser extends Controller
 {
   protected UserService $userService;
+  protected ImageService $imageService;
   protected UserDAO $userDAO;
   protected MovieDAO $movieDAO;
   protected CategoryDAO $categoryDAO;
   protected ReviewDAO $reviewDAO;
 
-  public function __construct(Engine $engine, Validation $validation, Sanitize $sanitize, SessionService $sessionService, Flash $flash, PersistentInput $persistentInput, UserService $userService, UserDAO $userDAO, MovieDAO $movieDAO, CategoryDAO $categoryDAO, ReviewDAO $reviewDAO)
-  {
+  public function __construct(
+    Engine $engine,
+    Validation $validation,
+    Sanitize $sanitize,
+    SessionService $sessionService,
+    Flash $flash,
+    PersistentInput $persistentInput,
+    UserService $userService,
+    ImageService $imageService,
+    UserDAO $userDAO,
+    MovieDAO $movieDAO,
+    CategoryDAO $categoryDAO,
+    ReviewDAO $reviewDAO,
+  ) {
     $this->userService = $userService;
+    $this->imageService = $imageService;
     $this->userDAO = $userDAO;
     $this->movieDAO = $movieDAO;
     $this->categoryDAO = $categoryDAO;

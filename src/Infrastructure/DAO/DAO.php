@@ -29,4 +29,19 @@ abstract class DAO
     $this->pdo = Connection::get();
     $this->table = $table;
   }
+
+  public function updateData(int $id, array $data): ?bool
+  {
+    try {
+      $query = "UPDATE {$this->table} SET " . implode(', ', array_map(fn($colmun) => "$colmun = :$colmun", array_keys($data))) . " WHERE id = :id";
+      $stmt = $this->pdo->prepare($query);
+      foreach ($data as $column => $value) {
+        $stmt->bindValue(":{$column}", $value);
+      }
+      $stmt->bindValue(':id', $id);
+      return $stmt->execute();
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use ReelRank\Application\Services\ImageService;
 use ReelRank\Application\Services\SessionService;
 use ReelRank\Application\Services\UserService;
 use ReelRank\Infrastructure\DAO\Persistence\CategoryDAO;
@@ -24,4 +25,5 @@ return [
   PersistentInput::class => fn(): PersistentInput => new PersistentInput(),
   SessionService::class => fn(): SessionService => new SessionService(),
   UserService::class => fn(): UserService => new UserService(new SessionService()),
+  ImageService::class => fn(): ImageService => new ImageService(new Flash()),
 ];
