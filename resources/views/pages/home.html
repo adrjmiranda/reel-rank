@@ -18,73 +18,30 @@
 			</p>
 		</div>
 
-		<div
-			class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-4"
-		>
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
-			{% include "partials/movie-card.html" %}
-			<!---->
+		<div>
+			{% if movies is empty %}
+			<p class="text-sm bg-black font-medium rounded-sm px-2 py-1">
+				Ainda não há filmes publicados.
+				<a
+					href="/postar/filme"
+					class="text-egg transition-colors duration-200 ease-in-out hover:text-poppy"
+					>Criar agora</a
+				>.
+			</p>
+
+			{% else %}
+
+			<div
+				class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-4"
+			>
+				{% for movie in movies %}
+				<!---->
+				{% include "partials/movie-card.html" with { movie: movie } %}
+				<!---->
+				{% endfor %}
+				<!---->
+			</div>
+			{% endif %}
 		</div>
 	</div>
 </section>

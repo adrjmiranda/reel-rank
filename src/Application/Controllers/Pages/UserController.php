@@ -121,7 +121,7 @@ class UserController extends Controller
     if ($data === null)
       return redirectBack($request);
 
-    $image = $this->imageService->save($request, $userData);
+    $image = $this->imageService->save($request, 'users', $userData->image());
     if ($image === null)
       return redirectBack($request);
 

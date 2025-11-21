@@ -5,6 +5,7 @@ namespace ReelRank\Application\Services;
 use ReelRank\Domain\Entities\Category;
 use ReelRank\Domain\Entities\Movie;
 use ReelRank\Domain\Entities\User;
+use ReelRank\Domain\ValueObjects\Image;
 use ReelRank\Infrastructure\Message\Flash;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -17,19 +18,12 @@ class ImageService
   ) {
   }
 
-  private function uploadDirectory(User|Movie|Category $entityData): string
+  private function uploadDirectory(string $folder): string
   {
-    $folder = match (get_class($entityData)) {
-      'ReelRank\Domain\Entities\User' => '/users',
-      'ReelRank\Domain\Entities\Movie' => '/movies',
-      'ReelRank\Domain\Entities\Category' => '/categories',
-      default => '',
-    };
-
-    return rootPath() . "/public_html/img{$folder}";
+    return empty($folder) ? rootPath() . "/public_html/img" : rootPath() . "/public_html/img/{$folder}";
   }
 
-  public function save(Request $request, User|Movie|Category $entityData): ?string
+  public function save(Request $request, string $folder, Image $oldImage): ?string
   {
     $imagename = null;
 
@@ -46,14 +40,14 @@ class ImageService
       }
 
       if ($okType) {
-        $directory = $this->uploadDirectory($entityData);
+        $directory = $this->uploadDirectory($folder);
         if (!is_dir($directory))
           mkdir($directory, 0755, true);
 
-        if ($entityData->image() !== null) {
-          $oldImage = $directory . DIRECTORY_SEPARATOR . $entityData->image()->value();
-          if (file_exists($oldImage)) {
-            unlink($oldImage);
+        if ($oldImage !== null) {
+          $lastImage = $directory . DIRECTORY_SEPARATOR . $oldImage->value();
+          if (file_exists($lastImage)) {
+            unlink($lastImage);
           }
         }
 

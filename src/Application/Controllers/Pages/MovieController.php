@@ -167,20 +167,11 @@ class MovieController extends Controller
     if ($data === null)
       return redirectBack($request);
 
-    $movieToUpdate = new Movie(
-      new Title($data['title']),
-      new CategoryId($data['categoryId']),
-      new UserId($this->userService->user()['id']),
-      isset($data['duration']) ? new Duration($data['duration']) : null,
-      isset($data['trailerUrl']) ? new TrailerUrl($data['trailerUrl']) : null,
-      isset($data['description']) ? new Description($data['description']) : null,
-    );
-
     $uploadedFiles = $request->getUploadedFiles();
     $uploadedImage = $uploadedFiles['image'] ?? null;
 
     if (!empty($uploadedImage->getClientFilename())) {
-      $image = $this->imageService->save($request, $movieToUpdate);
+      $image = $this->imageService->save($request, 'movies', $searchedMovie->image());
       if ($image === null)
         return redirectBack($request);
 
@@ -195,6 +186,7 @@ class MovieController extends Controller
       return redirectBack($request);
     }
 
+    $this->persistentInput->clear();
     $this->flash->set('session_message', 'Filme atualizado com sucesso!', Flash::SUCCESS);
     return redirect("/filme/{$id}");
   }

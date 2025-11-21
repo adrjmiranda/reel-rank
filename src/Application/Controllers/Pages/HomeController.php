@@ -10,7 +10,10 @@ class HomeController extends Controller
 {
   public function index(Request $request, Response $response): Response
   {
-    $response->getBody()->write($this->view("pages.home"));
+    $movies = $this->movieDAO->all();
+    $response->getBody()->write($this->view("pages.home", [
+      'movies' => $movies
+    ]));
 
     return $response;
   }

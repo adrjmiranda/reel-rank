@@ -19,7 +19,12 @@
 		</div>
 
 		<div>
-      <table class="flex flex-col gap-2 text-center bg-deep p-2 rounded-sm">
+     {% if movies is empty %}
+			<p class="text-sm bg-black font-medium rounded-sm px-2 py-1">Você ainda não publicou nenhum filme. <a href="/postar/filme" class="text-egg transition-colors duration-200 ease-in-out hover:text-poppy">Criar agora</a>.</p>
+
+		 {% else %}
+			
+		  <table class="flex flex-col gap-2 text-center bg-deep p-2 rounded-sm">
         <thead>
           {% include "partials/table/dashboard-head.html" %}
 				</thead>
@@ -30,6 +35,8 @@
         </tbody>
 			</table>
       {% include "partials/pagination.html" %}
+		 {% endif %}
+		 
     </div>
 		</div>
 	</div>
