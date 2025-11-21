@@ -47,8 +47,8 @@ $app->group('/', function (RouteCollectorProxy $group) {
 
   $group->group('', function (RouteCollectorProxy $group) {
     // Movies
-    $group->post('postar/filme', [MovieController::class, 'create']);
-    $group->post('editar/filme', [MovieController::class, 'edit']);
+    $group->post('postar/filme', [MovieController::class, 'store']);
+    $group->post('editar/filme', [MovieController::class, 'update']);
 
     // Users
     $group->post('perfil/edit', [UserController::class, 'update']);

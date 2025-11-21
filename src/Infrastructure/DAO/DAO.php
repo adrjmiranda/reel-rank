@@ -44,4 +44,17 @@ abstract class DAO
       throw $th;
     }
   }
+
+  public function lastId(): ?int
+  {
+    try {
+      $query = "SELECT * FROM {$this->table} ORDER BY id DESC LIMIT 1";
+      $stmt = $this->pdo->query($query);
+      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      return $result['id'] ?? null;
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
 }

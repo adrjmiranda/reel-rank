@@ -19,11 +19,11 @@ class User extends Entity
     private LastName $lastName,
     private Email $email,
     private Password $password,
-    private ?Id $id = null,
     private ?Image $image = null,
     private ?Bio $bio = null,
+    private ?Id $id = null,
     private ?CreatedAt $createdAt = null,
-    private ?UpdatedAt $updatedAt = null
+    private ?UpdatedAt $updatedAt = null,
   ) {
     parent::__construct($id, $createdAt, $updatedAt);
   }

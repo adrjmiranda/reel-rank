@@ -35,7 +35,7 @@
 					<h1
 						class="normal-case font-semibold border-l-4 border-solid border-egg w-fit pl-4 text-3xl leading-8"
 					>
-						Movie Title
+						{{ movie.title }}
 					</h1>
 				</div>
 
@@ -84,7 +84,7 @@
 					class="p-2 bg-deep rounded-sm ring-1 ring-gray-800 shadow-xl shadow-gray-900/80"
 				>
 					<img
-						src="{{ movie_img('') }}"
+						src="{{ movie_image(movie.image) }}"
 						alt="Movie title"
 						class="max-h-[415px] rounded-sm w-full object-center object-cover"
 					/>
@@ -94,7 +94,7 @@
 				>
 					<p class="text-sm flex justify-between bg-dark p-1 rounded-sm mb-2">
 						<strong class="text-egg">Duração:</strong>
-						<span class="text-white">129min</span>
+						<span class="text-white">{{ movie.duration }} min</span>
 					</p>
 					<p class="text-sm flex justify-between bg-dark p-1 rounded-sm">
 						<strong class="text-egg">Nota:</strong>

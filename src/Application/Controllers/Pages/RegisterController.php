@@ -4,14 +4,14 @@ namespace ReelRank\Application\Controllers\Pages;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
-use ReelRank\Application\Controllers\BaseUser;
+use ReelRank\Application\Controllers\Controller;
 use ReelRank\Domain\Entities\User;
 use ReelRank\Domain\ValueObjects\Email;
 use ReelRank\Domain\ValueObjects\FirstName;
 use ReelRank\Domain\ValueObjects\LastName;
 use ReelRank\Domain\ValueObjects\Password;
 
-class RegisterController extends BaseUser
+class RegisterController extends Controller
 {
 
   public function index(Request $request, Response $response): Response

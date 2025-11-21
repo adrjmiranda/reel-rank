@@ -19,7 +19,7 @@ return [
 
     return "<input type='hidden' name='csrfToken' value='{$csrfToken}' />";
   },
-  "movie_img" => function (string $imgName): string {
+  "movie_image" => function (string $imgName): string {
     $baseUrl = baseUrl();
     $imgUrl = "{$baseUrl}/img/default/cape.webp";
 

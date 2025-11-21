@@ -19,7 +19,7 @@ class Review extends Entity
     private MovieId $movieId,
     private ?Id $id = null,
     private ?CreatedAt $createdAt = null,
-    private ?UpdatedAt $updatedAt = null
+    private ?UpdatedAt $updatedAt = null,
   ) {
     parent::__construct($id, $createdAt, $updatedAt);
   }

@@ -19,11 +19,11 @@ class Movie extends Entity
     private Title $title,
     private CategoryId $categoryId,
     private UserId $userId,
-    private ?Id $id = null,
     private ?Duration $duration = null,
-    private ?Image $image = null,
     private ?TrailerUrl $trailerUrl = null,
+    private ?Image $image = null,
     private ?Description $description = null,
+    private ?Id $id = null,
     private ?CreatedAt $createdAt = null,
     private ?UpdatedAt $updatedAt = null
   ) {
@@ -43,6 +43,11 @@ class Movie extends Entity
   public function image(): ?Image
   {
     return $this->image;
+  }
+
+  public function setImage(Image $image): void
+  {
+    $this->image = $image;
   }
 
   public function trailerUrl(): ?TrailerUrl

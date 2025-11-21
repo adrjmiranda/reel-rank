@@ -3,6 +3,7 @@
 namespace ReelRank\Infrastructure\Validation;
 
 use InvalidArgumentException;
+use ReelRank\Infrastructure\DAO\Persistence\CategoryDAO;
 
 trait Rules
 {
@@ -86,6 +87,7 @@ trait Rules
     $limit = (int) $limit;
     if (\strlen($value) < $limit) {
       $this->flash->set($field, "Este campo deve ter no mínimo {$limit} caracteres.");
+      return null;
     }
 
     return $value;
@@ -102,6 +104,19 @@ trait Rules
     $limit = (int) $limit;
     if (\strlen($value) > $limit) {
       $this->flash->set($field, "Este campo deve ter no máximo {$limit} caracteres.");
+      return null;
+    }
+
+    return $value;
+  }
+
+  private function validcategory(string $field, int $value): ?int
+  {
+    $categoryDAO = new CategoryDAO();
+    $category = $categoryDAO->findOne($value);
+    if (!$category) {
+      $this->flash->set('categoryId', 'Categoria inválida');
+      return null;
     }
 
     return $value;

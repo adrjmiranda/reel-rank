@@ -2,15 +2,11 @@
 
 namespace ReelRank\Application\Controllers\Pages;
 
-use ReelRank\Application\Controllers\BaseUser;
+use ReelRank\Application\Controllers\Controller;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
-use ReelRank\Domain\Entities\User;
-use ReelRank\Domain\ValueObjects\Email;
-use ReelRank\Domain\ValueObjects\FirstName;
-use ReelRank\Domain\ValueObjects\LastName;
 
-class UserController extends BaseUser
+class UserController extends Controller
 {
   public function show(Request $request, Response $response): Response
   {
@@ -97,10 +93,12 @@ class UserController extends BaseUser
     $data = $this->validation->validate($data, $ruleList);
     if ($data === null)
       return redirectBack($request);
-    $image = $this->imageService->save($request, $userData);
 
-    if ($image !== null)
-      $data['image'] = $image;
+    $image = $this->imageService->save($request, $userData);
+    if ($image === null)
+      return redirectBack($request);
+
+    $data['image'] = $image;
 
     $updated = $this->userDAO->updateData($user['id'], $data);
     if (!$updated) {

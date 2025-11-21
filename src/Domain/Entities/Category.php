@@ -12,8 +12,8 @@ class Category extends Entity
 {
   public function __construct(
     private Name $name,
-    private ?Id $id = null,
     private ?Image $image = null,
+    private ?Id $id = null,
     private ?CreatedAt $createdAt = null,
     private ?UpdatedAt $updatedAt = null
   ) {
@@ -28,5 +28,10 @@ class Category extends Entity
   public function image(): ?Image
   {
     return $this->image;
+  }
+
+  public function setImage(Image $image): void
+  {
+    $this->image = $image;
   }
 }

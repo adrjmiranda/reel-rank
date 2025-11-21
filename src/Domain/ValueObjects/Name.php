@@ -12,7 +12,7 @@ class Name
 
   public function __construct(
     private string $value,
-    private int $maxLength
+    private int $maxLength = 255
   ) {
     if (empty($value))
       throw new EmptyNameException();
