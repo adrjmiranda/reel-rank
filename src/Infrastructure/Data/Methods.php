@@ -9,8 +9,11 @@ trait Methods
     return $value;
   }
 
-  public function extspaces(string $text): string
+  public function extspaces(int|string $value): string
   {
-    return preg_replace('/\s+/', ' ', $text);
+    if (\is_int($value))
+      return $value;
+
+    return preg_replace('/\s+/', ' ', $value);
   }
 }

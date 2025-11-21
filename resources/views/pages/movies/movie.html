@@ -10,16 +10,16 @@
 			>
 				<span class="font-medium text-base">Postado por:</span>
 				<a
-					href="#"
+					href="/usuario/{{ movie.userId }}"
 					class="flex items-center gap-3 bg-linear-to-r from-deep py-1 px-2 rounded-sm transition-all duration-200 ease-in-out"
 				>
 					<img
-						src="{{ user_image('') }}"
+						src="{{ user_image(owner.image) }}"
 						alt="User Name"
 						class="rounded-sm h-7 w-7 object-cover object-center ring-1 ring-poppy shadow-xl shadow-egg/20"
 					/>
-					<span class="font-medium capitalize text-egg font-headline text-2xl"
-						>Adriano Miranda</span
+					<span class="font-normal capitalize text-egg font-headline text-xl"
+						>{{ owner.firstName }} {{ owner.lastName }}</span
 					>
 				</a>
 			</h3>
@@ -44,7 +44,7 @@
 				>
 					<iframe
 						class="w-full h-86"
-						src="https://www.youtube.com/embed/KV9JqZPo26Y?si=EdrDqHE5K5vknnFg"
+						src="{{ movie.trailerUrl ? movie.trailerUrl : 'https://www.youtube.com/embed/KV9JqZPo26Y?si=2HhIbf-wU6GfT-Vn' }}"
 						title="YouTube video player"
 						frameborder="0"
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -63,10 +63,7 @@
 					class="bg-deep p-2 rounded-sm text-center md:text-left ring-1 ring-gray-800 shadow-xl shadow-gray-900/80"
 				>
 					<p x-bind:class="hidden ? 'line-clamp-2' : 'line-clamp-none'">
-						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa,
-						eveniet? Cum delectus culpa ad exercitationem voluptate consequuntur
-						incidunt, fuga provident eaque mollitia earum at, accusamus amet
-						iste quo molestiae possimus!
+						{{ movie.description }}
 					</p>
 					<button
 						type="button"

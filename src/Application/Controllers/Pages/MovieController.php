@@ -7,6 +7,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use ReelRank\Domain\Entities\Movie;
 use ReelRank\Domain\ValueObjects\CategoryId;
+use ReelRank\Domain\ValueObjects\Description;
 use ReelRank\Domain\ValueObjects\Duration;
 use ReelRank\Domain\ValueObjects\Image;
 use ReelRank\Domain\ValueObjects\Title;
@@ -25,8 +26,11 @@ class MovieController extends Controller
       return redirect('/');
     }
 
+    $owner = $this->userDAO->findOne($movie->userId()->value());
+
     $response->getBody()->write($this->view("pages.movies.movie", [
-      'movie' => $movie
+      'movie' => $movie,
+      'owner' => $owner
     ]));
 
     return $response;
@@ -51,11 +55,11 @@ class MovieController extends Controller
       "categoryId" => 'trim',
     ];
     if (!empty($data['duration']))
-      $sanitizeData['duration'] = 'trim';
+      $sanitizeData['duration'] = 'trim|extspaces';
     if (!empty($data['trailerUrl']))
       $sanitizeData['trailerUrl'] = 'trim';
     if (!empty($data['description']))
-      $sanitizeData['description'] = 'trim|htmlspecialchars';
+      $sanitizeData['description'] = 'trim|extspaces';
     $data = $this->sanitize->sanitize($request, $sanitizeData);
 
     $ruleList = [
@@ -78,6 +82,7 @@ class MovieController extends Controller
       new UserId($this->userService->user()['id']),
       isset($data['duration']) ? new Duration($data['duration']) : null,
       isset($data['trailerUrl']) ? new TrailerUrl($data['trailerUrl']) : null,
+      isset($data['description']) ? new Description($data['description']) : null,
     );
 
     $image = $this->imageService->save($request, $newMovie);
@@ -92,6 +97,7 @@ class MovieController extends Controller
       return redirectBack($request);
     }
 
+    $this->persistentInput->clear();
     return redirect("/filme/{$createdMovie->id()->value()}");
   }
 

@@ -21,8 +21,8 @@ class Movie extends Entity
     private UserId $userId,
     private ?Duration $duration = null,
     private ?TrailerUrl $trailerUrl = null,
-    private ?Image $image = null,
     private ?Description $description = null,
+    private ?Image $image = null,
     private ?Id $id = null,
     private ?CreatedAt $createdAt = null,
     private ?UpdatedAt $updatedAt = null
