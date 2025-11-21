@@ -5,12 +5,39 @@ namespace ReelRank\Application\Controllers\Pages;
 use ReelRank\Application\Controllers\Controller;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use ReelRank\Infrastructure\Message\Flash;
 
 class UserController extends Controller
 {
-  public function show(Request $request, Response $response): Response
+  public function show(Request $request, Response $response, array $params): Response
   {
-    $response->getBody()->write($this->view("pages.users.user"));
+
+    $userId = (int) ($params['id'] ?? '');
+    $user = $this->userDAO->findOne($userId);
+    if (!$user) {
+      $this->flash->set('session_message', 'Usuário não encontrado', Flash::WARNING);
+      return redirectBack($request);
+    }
+
+    $reviewPosted = $this->movieDAO->count('userId', $userId, 'userId');
+    $commentsMade = $this->reviewDAO->count('userId', $userId, 'userId');
+    $reviewsWritten = $commentsMade;
+
+    $userMovies = $this->movieDAO->allByField('userId', $userId);
+    $commentsOnYourPosts = 0;
+    foreach ($userMovies as $movie) {
+      $movieId = $movie->id()->value();
+      $comments = $this->reviewDAO->count('movieId', $movieId, 'movieId');
+      $commentsOnYourPosts += $comments;
+    }
+
+    $response->getBody()->write($this->view("pages.users.user", [
+      'user' => $user,
+      'reviewPosted' => $reviewPosted,
+      'commentsMade' => $commentsMade,
+      'reviewsWritten' => $reviewsWritten,
+      'commentsOnYourPosts' => $commentsOnYourPosts,
+    ]));
 
     return $response;
   }
