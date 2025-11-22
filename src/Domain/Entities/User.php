@@ -18,7 +18,7 @@ class User extends Entity
     private FirstName $firstName,
     private LastName $lastName,
     private Email $email,
-    private Password $password,
+    private ?Password $password,
     private ?Image $image = null,
     private ?Bio $bio = null,
     protected ?Id $id = null,
@@ -46,6 +46,11 @@ class User extends Entity
   public function password(): Password
   {
     return $this->password;
+  }
+
+  public function removePassword(): void
+  {
+    $this->password = null;
   }
 
   public function image(): ?Image

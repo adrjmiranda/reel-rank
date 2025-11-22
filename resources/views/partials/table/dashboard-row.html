@@ -1,4 +1,8 @@
-<tr class="flex items-center justify-between bg-black p-2 rounded-sm">
+<tr
+	x-data="dashboardRow"
+	data-dashboard-row
+	class="flex items-center justify-between bg-black p-2 rounded-sm"
+>
 	<td class="flex-1 sm:inline-block hidden">{{ loop.index }}</td>
 	<td class="flex-1">{{ movie.title }}</td>
 	<td class="flex-1 min-[364px]:inline-block hidden">
@@ -36,6 +40,7 @@
 		<button
 			type="button"
 			class="group"
+			@click="remove({{ movie.id }}, $root)"
 		>
 			<i
 				class="ph ph-trash text-red-500 group-hover:scale-105 transition-all duration-200 ease-in-out"

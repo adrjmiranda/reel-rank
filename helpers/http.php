@@ -20,3 +20,9 @@ function redirectBack(Request $request): Response
   $response = new \Slim\Psr7\Response();
   return $response->withHeader('Location', $previousPath)->withStatus(302);
 }
+
+function jsonResponse(Response $response, array $data, int $code = 200): Response
+{
+  $response->getBody()->write(json_encode($data));
+  return $response->withHeader('Content-Type', 'application/json')->withStatus($code);
+}

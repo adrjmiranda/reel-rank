@@ -23,7 +23,7 @@ class ImageService
     return empty($folder) ? rootPath() . "/public_html/img" : rootPath() . "/public_html/img/{$folder}";
   }
 
-  public function save(Request $request, string $folder, Image $oldImage): ?string
+  public function save(Request $request, string $folder, ?Image $oldImage): ?string
   {
     $imagename = null;
 

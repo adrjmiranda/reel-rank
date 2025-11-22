@@ -87,7 +87,7 @@ class MovieController extends Controller
       isset($data['description']) ? new Description($data['description']) : null,
     );
 
-    $image = $this->imageService->save($request, $newMovie);
+    $image = $this->imageService->save($request, 'movies', null);
     if ($image === null)
       return redirectBack($request);
 
@@ -189,5 +189,41 @@ class MovieController extends Controller
     $this->persistentInput->clear();
     $this->flash->set('session_message', 'Filme atualizado com sucesso!', Flash::SUCCESS);
     return redirect("/filme/{$id}");
+  }
+
+  public function remove(Request $request, Response $response, array $params): Response
+  {
+    $id = (int) ($params['id'] ?? '');
+    $movieToRemove = $this->movieDAO->findOne($id);
+
+    if (!$movieToRemove)
+      return jsonResponse($response, [
+        'message' => 'Filme não encontrado!',
+        'status' => false
+      ], 404);
+
+
+    $movieImage = $movieToRemove->image()->value();
+
+    $deleted = $this->movieDAO->deleteOne($id);
+
+    if ($deleted) {
+      $movieImagePath = rootPath()
+        . DIRECTORY_SEPARATOR . 'public_html'
+        . DIRECTORY_SEPARATOR . 'img'
+        . DIRECTORY_SEPARATOR . 'movies'
+        . DIRECTORY_SEPARATOR . $movieImage;
+
+      if (file_exists($movieImagePath)) {
+        unlink($movieImagePath);
+      }
+    }
+
+    return jsonResponse($response, [
+      'message' => $deleted
+        ? 'Filme removido com sucesso!'
+        : 'Falha ao tentar remover filme!',
+      'status' => $deleted
+    ], $deleted ? 200 : 500);
   }
 }

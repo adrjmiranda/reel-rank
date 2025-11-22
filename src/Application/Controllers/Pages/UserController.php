@@ -19,6 +19,8 @@ class UserController extends Controller
       return redirectBack($request);
     }
 
+    $user->removePassword();
+
     $reviewPosted = $this->movieDAO->count('userId', $userId, 'userId');
     $commentsMade = $this->reviewDAO->count('userId', $userId, 'userId');
     $reviewsWritten = $commentsMade;

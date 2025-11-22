@@ -1,5 +1,5 @@
 <?php
 
-use ReelRank\Application\Controllers\Api\UserController;
+use ReelRank\Application\Controllers\Pages\MovieController;
 
-$app->post("/user/register", [UserController::class, 'register']);
+$app->delete("/filme/remove/{id}", [MovieController::class, 'remove']);
