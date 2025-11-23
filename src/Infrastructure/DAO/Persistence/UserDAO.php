@@ -49,4 +49,10 @@ final class UserDAO extends DAO implements UserDAOInterface
     $data = $this->findAll($filter);
     return $this->hydrateList($data, User::class, UserCollection::class);
   }
+
+  public function pagination(int $page, int $limit, array $filter, string $orderBy = 'ASC'): UserCollection
+  {
+    $data = $this->page($page, $limit, $filter, $orderBy);
+    return $this->hydrateList($data, User::class, UserCollection::class);
+  }
 }

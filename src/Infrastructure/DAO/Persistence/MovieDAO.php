@@ -66,4 +66,10 @@ final class MovieDAO extends DAO implements MovieDAOInterface
       throw $th;
     }
   }
+
+  public function pagination(int $page, int $limit, array $filter, string $orderBy = 'ASC'): MovieCollection
+  {
+    $data = $this->page($page, $limit, $filter, $orderBy);
+    return $this->hydrateList($data, Movie::class, MovieCollection::class);
+  }
 }

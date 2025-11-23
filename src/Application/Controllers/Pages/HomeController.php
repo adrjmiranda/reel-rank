@@ -8,11 +8,22 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 class HomeController extends Controller
 {
-  public function index(Request $request, Response $response): Response
+  public function index(Request $request, Response $response, array $params): Response
   {
-    $movies = $this->movieDAO->all();
+    $params = $request->getQueryParams() ?? [];
+    $currentPage = (int) ($params['page'] ?? '');
+
+    $limitPerPage = 1;
+    $pages = $this->movieDAO->pages($limitPerPage);
+    $movies = $this->movieDAO->pagination(1, $limitPerPage, []);
+    if ($currentPage !== 0) {
+      $movies = $this->movieDAO->pagination($currentPage, $limitPerPage, []);
+    }
+
     $response->getBody()->write($this->view("pages.home", [
-      'movies' => $movies
+      'movies' => $movies,
+      'pages' => $pages,
+      'currentPage' => $currentPage === 0 ? 1 : $currentPage
     ]));
 
     return $response;

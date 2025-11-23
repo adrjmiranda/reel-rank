@@ -43,4 +43,10 @@ final class ReviewDAO extends DAO implements ReviewDAOInterface
     $data = $this->findAll($filter);
     return $this->hydrateList($data, Review::class, ReviewCollection::class);
   }
+
+  public function pagination(int $page, int $limit, array $filter, string $orderBy = 'ASC'): ReviewCollection
+  {
+    $data = $this->page($page, $limit, $filter, $orderBy);
+    return $this->hydrateList($data, Review::class, ReviewCollection::class);
+  }
 }

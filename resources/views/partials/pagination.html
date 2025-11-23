@@ -1,54 +1,49 @@
+{% if pages > 1 %}
 <div class="flex items-center justify-center w-fit mx-auto gap-3">
-	<button
-		type="button"
+	<a
+		href="?page={{ currentPage - 1 >= 1 ? currentPage - 1 : 1 }}"
 		class="group"
 	>
 		<i
 			class="ph ph-caret-left text-2xl group-hover:text-poppy group-hover:scale-105 transition-all ease-in-out duration-200"
 		></i>
-	</button>
+	</a>
 	<div class="my-4 p-2 bg-deep w-fit rounded-sm">
 		<ul class="flex justify-center items-center gap-2">
+			{% for i in range(currentPage, pages) %}
+			<!---->
+			{% if i > currentPage - 2 %}
+			<!---->
+			{% if (pages - 1) - (currentPage - 1) > 3 and i > currentPage + 1 and i <
+			pages - 2 %}
+			<li>....</li>
+			{% else %}
+			<!---->
+			{% if i < currentPage + 2 or i > pages - 3 %}
 			<li>
-				<button
-					type="button"
+				<a
+					href="?page={{ i }}"
 					class="rounded-sm px-2 py-1 bg-dark transition-all duration-200 ease-in-out hover:bg-poppy hover:text-dark hover:scale-105"
 				>
-					1
-				</button>
+					{{ i }}
+				</a>
 			</li>
-			<li>
-				<button
-					type="button"
-					class="rounded-sm px-2 py-1 bg-dark transition-all duration-200 ease-in-out hover:bg-poppy hover:text-dark hover:scale-105"
-				>
-					2
-				</button>
-			</li>
-			<li>
-				<button
-					type="button"
-					class="rounded-sm px-2 py-1 bg-dark"
-				>
-					...
-				</button>
-			</li>
-			<li>
-				<button
-					type="button"
-					class="rounded-sm px-2 py-1 bg-dark transition-all duration-200 ease-in-out hover:bg-poppy hover:text-dark hover:scale-105"
-				>
-					9
-				</button>
-			</li>
+			{% endif %}
+			<!---->
+			{% endif %}
+			<!---->
+			{% endif %}
+			<!---->
+			{% endfor %}
 		</ul>
 	</div>
-	<button
-		type="button"
+	<a
+		href="?page={{ currentPage + 1 <= pages ? currentPage : pages }}"
 		class="group"
 	>
 		<i
 			class="ph ph-caret-right text-2xl group-hover:text-poppy group-hover:scale-105 transition-all ease-in-out duration-200"
 		></i>
-	</button>
+	</a>
 </div>
+{% endif %}

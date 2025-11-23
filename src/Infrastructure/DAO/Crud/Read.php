@@ -101,4 +101,64 @@ trait Read
       throw $th;
     }
   }
+
+  public function countAll(): int
+  {
+    try {
+      $query = "SELECT COUNT(id) FROM {$this->table}";
+      $stmt = $this->pdo->query($query);
+
+      return (int) $stmt->fetchColumn();
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+
+  public function pages(int $limit): int
+  {
+    if ($limit < 1)
+      $limit = 1;
+    $total = $this->countAll();
+
+    return $total / $limit;
+  }
+
+  protected function page(int $page, int $limit, array $filter, string $orderBy = 'ASC'): ?array
+  {
+    try {
+      if ($page < 1)
+        $page = 1;
+      $offset = $limit * ($page - 1);
+
+      $filters = empty($filter) ? '*' : implode(', ', $filter);
+
+      $query = "SELECT {$filters} FROM {$this->table} ORDER BY createdAt {$orderBy} LIMIT $limit OFFSET $offset";
+      $stmt = $this->pdo->query($query);
+
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  protected function pageByField(string $field, mixed $value, $page, int $limit, array $filter, string $orderBy = 'ASC'): ?array
+  {
+    try {
+      if ($page < 1)
+        $page = 1;
+      $offset = $limit * ($page - 1);
+
+      $filters = empty($filter) ? '*' : implode(', ', $filter);
+
+      $query = "SELECT {$filters} FROM {$this->table} WHERE {$field} = :{$field} ORDER BY createdAt {$orderBy} LIMIT $limit OFFSET $offset";
+      $stmt = $this->pdo->prepare($query);
+      $stmt->bindValue(":{$field}", $value);
+      $stmt->execute();
+
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
 }

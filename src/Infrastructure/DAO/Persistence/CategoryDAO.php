@@ -43,4 +43,10 @@ final class CategoryDAO extends DAO implements CategoryDAOInterface
     $data = $this->findAll($filter);
     return $this->hydrateList($data, Category::class, CategoryCollection::class);
   }
+
+  public function pagination(int $page, int $limit, array $filter, string $orderBy = 'ASC'): CategoryCollection
+  {
+    $data = $this->page($page, $limit, $filter, $orderBy);
+    return $this->hydrateList($data, Category::class, CategoryCollection::class);
+  }
 }
