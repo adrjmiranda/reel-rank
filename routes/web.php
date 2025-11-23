@@ -28,6 +28,7 @@ $app->group('/', function (RouteCollectorProxy $group) {
 $app->get('/', [HomeController::class, 'index']);
 $app->get('/politicas-de-privacidade', [PrivacyPolicies::class, 'index']);
 $app->get('/termos-de-uso', [TermsOfUse::class, 'index']);
+$app->get('/search/filmes', [HomeController::class, 'search']);
 
 // Movies
 $app->get('/filme/{id}', [MovieController::class, 'show']);

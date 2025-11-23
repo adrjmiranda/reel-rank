@@ -72,4 +72,10 @@ final class MovieDAO extends DAO implements MovieDAOInterface
     $data = $this->page($page, $limit, $filter, $orderBy);
     return $this->hydrateList($data, Movie::class, MovieCollection::class);
   }
+
+  public function search(string $title, int $page, int $limit, array $filter, string $orderBy = 'ASC'): MovieCollection
+  {
+    $data = $this->searchByField('title', $title, $page, $limit, $filter, $orderBy);
+    return $this->hydrateList($data, Movie::class, MovieCollection::class);
+  }
 }

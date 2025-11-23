@@ -121,7 +121,7 @@ trait Read
       $limit = 1;
     $total = $this->countAll();
 
-    return $total / $limit;
+    return (int) floor($total / $limit);
   }
 
   protected function page(int $page, int $limit, array $filter, string $orderBy = 'ASC'): ?array
@@ -154,6 +154,26 @@ trait Read
       $query = "SELECT {$filters} FROM {$this->table} WHERE {$field} = :{$field} ORDER BY createdAt {$orderBy} LIMIT $limit OFFSET $offset";
       $stmt = $this->pdo->prepare($query);
       $stmt->bindValue(":{$field}", $value);
+      $stmt->execute();
+
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  protected function searchByField(string $field, mixed $value, $page, int $limit, array $filter, string $orderBy = 'ASC'): ?array
+  {
+    try {
+      if ($page < 1)
+        $page = 1;
+      $offset = $limit * ($page - 1);
+
+      $filters = empty($filter) ? '*' : implode(', ', $filter);
+
+      $query = "SELECT {$filters} FROM {$this->table} WHERE {$field} LIKE :{$field} ORDER BY createdAt {$orderBy} LIMIT $limit OFFSET $offset";
+      $stmt = $this->pdo->prepare($query);
+      $stmt->bindValue(":{$field}", "%{$value}%");
       $stmt->execute();
 
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
