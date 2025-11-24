@@ -7,6 +7,7 @@ use PDO;
 use PDOStatement;
 use ReelRank\Application\Services\SessionService;
 use ReelRank\Application\Services\UserService;
+use ReelRank\Domain\ValueObjects\RatingEnum;
 use ReflectionClass;
 use ReflectionObject;
 
@@ -79,6 +80,7 @@ trait Handler
         $value = match ($property) {
           "createdAt" => isset($row['createdAt']) ? DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $row[$property]) : null,
           "updatedAt" => isset($row['updatedAt']) ? DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $row[$property]) : null,
+          'rating' => RatingEnum::from($row['rating']),
           default => $row[$property] ?? null,
         };
 

@@ -6,6 +6,7 @@ use ReelRank\Application\Controllers\Pages\LogoutController;
 use ReelRank\Application\Controllers\Pages\MovieController;
 use ReelRank\Application\Controllers\Pages\PrivacyPolicies;
 use ReelRank\Application\Controllers\Pages\RegisterController;
+use ReelRank\Application\Controllers\Pages\ReviewController;
 use ReelRank\Application\Controllers\Pages\TermsOfUse;
 use ReelRank\Application\Controllers\Pages\UserController;
 use ReelRank\Application\Middlewares\CheckLoggedOutMiddleware;
@@ -50,6 +51,7 @@ $app->group('/', function (RouteCollectorProxy $group) {
     // Movies
     $group->post('postar/filme', [MovieController::class, 'store']);
     $group->post('editar/filme', [MovieController::class, 'update']);
+    $group->post('review/filme', [ReviewController::class, 'store']);
 
     // Users
     $group->post('perfil/edit', [UserController::class, 'update']);

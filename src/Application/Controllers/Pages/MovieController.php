@@ -28,11 +28,35 @@ class MovieController extends Controller
       return redirect('/');
     }
 
+    $queryParams = $request->getQueryParams() ?? [];
+    $currentPage = (int) ($queryParams['page'] ?? '');
+
     $owner = $this->userDAO->findOne($movie->userId()->value());
+    $limitPerPage = 4;
+    $pages = $this->reviewDAO->pages($limitPerPage);
+    $reviews = $this->reviewDAO->paginationReviewListByMovie($movie->id()->value(), 1, $limitPerPage);
+    if ($currentPage !== 0) {
+      $reviews = $this->reviewDAO->paginationReviewListByMovie($movie->id()->value(), $currentPage, $limitPerPage);
+    }
+
+    $totalReviews = $this->reviewDAO->countAll();
+    $rating = floor(array_reduce($reviews, fn($acc, $review) => $acc + $review['rating'], 0)) / ($totalReviews === 0 ? 1 : $totalReviews);
+
+    $alreadyReviewed = $this->userService->isLoggedIn() ? $this->reviewDAO->findByUserId($this->userService->user()['id']) !== null : false;
+
+    $reviews = array_map(function ($review) {
+      $review['rating'] = number_format($review['rating'], 1, ',', '.');
+      return $review;
+    }, $reviews);
 
     $response->getBody()->write($this->view("pages.movies.movie", [
       'movie' => $movie,
-      'owner' => $owner
+      'owner' => $owner,
+      'reviews' => $reviews,
+      'currentPage' => $currentPage,
+      'pages' => $pages,
+      'rating' => number_format($rating, 1, ',', '.'),
+      'alreadyReviewed' => $alreadyReviewed
     ]));
 
     return $response;
@@ -189,41 +213,5 @@ class MovieController extends Controller
     $this->persistentInput->clear();
     $this->flash->set('session_message', 'Filme atualizado com sucesso!', Flash::SUCCESS);
     return redirect("/filme/{$id}");
-  }
-
-  public function remove(Request $request, Response $response, array $params): Response
-  {
-    $id = (int) ($params['id'] ?? '');
-    $movieToRemove = $this->movieDAO->findOne($id);
-
-    if (!$movieToRemove)
-      return jsonResponse($response, [
-        'message' => 'Filme não encontrado!',
-        'status' => false
-      ], 404);
-
-
-    $movieImage = $movieToRemove->image()->value();
-
-    $deleted = $this->movieDAO->deleteOne($id);
-
-    if ($deleted) {
-      $movieImagePath = rootPath()
-        . DIRECTORY_SEPARATOR . 'public_html'
-        . DIRECTORY_SEPARATOR . 'img'
-        . DIRECTORY_SEPARATOR . 'movies'
-        . DIRECTORY_SEPARATOR . $movieImage;
-
-      if (file_exists($movieImagePath)) {
-        unlink($movieImagePath);
-      }
-    }
-
-    return jsonResponse($response, [
-      'message' => $deleted
-        ? 'Filme removido com sucesso!'
-        : 'Falha ao tentar remover filme!',
-      'status' => $deleted
-    ], $deleted ? 200 : 500);
   }
 }

@@ -19,4 +19,9 @@ final class ReviewCollection implements IteratorAggregate
   {
     return new ArrayIterator($this->reviews);
   }
+
+  public function toArray(): array
+  {
+    return $this->reviews;
+  }
 }

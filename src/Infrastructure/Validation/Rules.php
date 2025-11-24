@@ -4,6 +4,7 @@ namespace ReelRank\Infrastructure\Validation;
 
 use InvalidArgumentException;
 use ReelRank\Infrastructure\DAO\Persistence\CategoryDAO;
+use ReelRank\Infrastructure\DAO\Persistence\MovieDAO;
 
 trait Rules
 {
@@ -116,6 +117,28 @@ trait Rules
     $category = $categoryDAO->findOne($value);
     if (!$category) {
       $this->flash->set('categoryId', 'Categoria inválida');
+      return null;
+    }
+
+    return $value;
+  }
+
+  private function between(string $field, int $value, array $params): ?int
+  {
+    [$min, $max] = $params;
+    if ($value < $min || $value > $max) {
+      $this->flash->set($field, "Valores permitidos de {$min} a {$max}");
+      return null;
+    }
+
+    return $value;
+  }
+
+  private function validmovie(string $field, int $value): ?int
+  {
+    $movie = (new MovieDAO())->findOne($value);
+    if (!$movie) {
+      $this->flash->set('session_message', "Falha na requisição. O filme não existe.");
       return null;
     }
 

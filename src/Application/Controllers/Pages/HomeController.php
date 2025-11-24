@@ -8,10 +8,10 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 class HomeController extends Controller
 {
-  public function index(Request $request, Response $response, array $params): Response
+  public function index(Request $request, Response $response): Response
   {
-    $params = $request->getQueryParams() ?? [];
-    $currentPage = (int) ($params['page'] ?? '');
+    $queryParams = $request->getQueryParams() ?? [];
+    $currentPage = (int) ($queryParams['page'] ?? '');
 
     $limitPerPage = 8;
     $pages = $this->movieDAO->pages($limitPerPage);
@@ -47,8 +47,6 @@ class HomeController extends Controller
       'pages' => $pages,
       'currentPage' => $currentPage === 0 ? 1 : $currentPage
     ]));
-
-    return $response;
 
     return $response;
   }
