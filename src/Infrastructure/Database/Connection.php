@@ -29,8 +29,8 @@ class Connection
           PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
           PDO::ATTR_ERRMODE => isDev() ? PDO::ERRMODE_EXCEPTION : PDO::ERRMODE_SILENT
         ]);
-      } catch (PDOException $e) {
-        dd($e->getMessage());
+      } catch (\Throwable $th) {
+        throw $th;
       }
     }
 
